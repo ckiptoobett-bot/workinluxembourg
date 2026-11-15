@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work in Luxembourg | International Employment Opportunities - 2026</title>
+  <style>
+    :root {
+      --lux-blue: #00A1DE;
+      --lux-red: #ED2939;
+      --dark: #0f172a;
+      --text: #1e293b;
+      --muted: #475569;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .card {
+      background: var(--card);
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+      margin-bottom: 32px;
+    }
+
+    .banner {
+      background: linear-gradient(135deg, var(--dark) 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 32px 24px;
+      border-bottom: 4px solid var(--lux-blue);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .banner h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .banner p {
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .content-section {
+      padding: 24px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    .content-section h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .content-section h2:first-child {
+      margin-top: 0;
+    }
+
+    .content-section p {
+      margin-bottom: 12px;
+    }
+
+    .content-section ul {
+      margin-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .content-section li {
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--lux-blue);
+      padding: 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #1e3a8a;
+    }
+
+    .process-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .process-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .important-note-box {
+      background: #fefce8;
+      border-left: 4px solid #eab308;
+      padding: 14px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 16px;
+      font-size: 13.5px;
+      color: #713f12;
+    }
+
+    form {
+      padding: 24px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--lux-blue);
+      margin: 24px 0 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .req {
+      color: var(--lux-red);
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      color: var(--text);
+      background-color: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--lux-blue);
+      box-shadow: 0 0 0 3px rgba(0, 161, 222, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--lux-blue);
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background-color: var(--lux-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #0284c7;
+    }
+
+    button:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .alert {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+      display: none;
+      text-align: center;
+    }
+
+    .alert.success {
+      background-color: #dcfce7;
+      color: #166534;
+      display: block;
+    }
+
+    .alert.error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      display: block;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      padding: 18px 24px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .copyright {
+      margin-top: 6px;
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <div class="banner">
+      <span class="badge">🇱🇺 WORK IN LUXEMBOURG – 2026</span>
+      <h1>International Employment Opportunities</h1>
+      <p>Connecting African talent with European employment opportunities.</p>
+    </div>
+
+    <!-- Informational Overview Section -->
+    <div class="content-section">
+      <h2>Discover Employment Opportunities in Luxembourg</h2>
+      <p>Luxembourg is one of Europe's leading economies, offering employment opportunities across multiple sectors, including construction, hospitality, healthcare, logistics, manufacturing, transportation, technology, and professional services.</p>
+      <p>We welcome skilled professionals, experienced workers, and eligible entry-level applicants seeking to advance their careers in Luxembourg.</p>
+      
+      <div class="highlight-box">
+        <strong>Key Benefits for Successful Candidates:</strong>
+        <ul style="margin-bottom: 0;">
+          <li>100% Visa Cost Coverage</li>
+          <li>Fully Covered Accommodation</li>
+          <li>Relocation Support & Competitive Salaries</li>
+        </ul>
+      </div>
+
+      <h2>Application Follow-Up & Assessment Process</h2>
+      <div class="process-box">
+        <p><strong>Shortlisting Notification:</strong> Applicants who meet the initial selection criteria will receive an official notification via email within 72 hours of submitting their applications. Notifications will be sent from <strong>luxemburgjobopportunities2026@gmail.com</strong>. Applicants are encouraged to monitor their inbox and spam/junk folders regularly.</p>
+        <p><strong>Assessment Requirements:</strong> Shortlisted candidates will be required to complete a two-part assessment designed to evaluate their Language Proficiency and Professional Specialisation in their respective fields.</p>
+        <p><strong>Assessment Fee:</strong> A fee of <strong>US$50</strong> applies for the complete assessment process.</p>
+      </div>
+
+      <div class="important-note-box">
+        <strong>Important Note:</strong> Submission of an application or payment of the assessment fee does not guarantee employment, a visa, or a job offer. Final recruitment and visa decisions are made by prospective employers and Luxembourg immigration authorities.
+      </div>
+    </div>
+
+    <!-- Application Form Connected to Static Forms & Telegram -->
+    <form id="luxForm" action="https://api.staticforms.dev/submit" method="POST">
+      <input type="hidden" name="apiKey" value="sf_4b58dd9c73c2a8cfd945c274">
+      <input type="hidden" name="subject" value="New Luxembourg Job Application">
+      
+      <!-- SECTION 1: PERSONAL DETAILS -->
+      <div class="section-title">1. Personal Information</div>
+
+      <div class="form-group">
+        <label for="fullName">Full Name (as on Passport) <span class="req">*</span></label>
+        <input type="text" id="fullName" name="Full_Name" required placeholder="e.g. Samuel Kamau Mwangi">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth <span class="req">*</span></label>
+        <input type="date" id="dob" name="Date_of_Birth" required>
+      </div>
+
+      <div class="form-group">
+        <label for="nationality">Nationality / Country of Residence <span class="req">*</span></label>
+        <input type="text" id="nationality" name="Nationality_Residence" required placeholder="e.g. Kenyan / Nairobi, Kenya">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">WhatsApp / Phone Number (with Country Code) <span class="req">*</span></label>
+        <input type="tel" id="phone" name="WhatsApp_Phone" required placeholder="e.g. +254 712 345 678">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="Email" required placeholder="e.g. applicant@email.com">
+      </div>
+
+      <!-- SECTION 2: PASSPORT & ELIGIBILITY -->
+      <div class="section-title">2. Eligibility & Passport Status</div>
+
+      <div class="form-group">
+        <label for="ageCheck">Are you at least 18 years of age? <span class="req">*</span></label>
+        <select id="ageCheck" name="Age_Over_18" required>
+          <option value="" disabled selected>Select confirmation...</option>
+          <option value="Yes">Yes, I am 18 years or older</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="passportStatus">Valid International Passport Status <span class="req">*</span></label>
+        <select id="passportStatus" name="Passport_Status" required>
+          <option value="" disabled selected>Select passport status...</option>
+          <option value="Valid Passport">Yes - Valid International Passport</option>
+          <option value="Applied / Waiting">Applied / Waiting for collection</option>
+          <option value="Needs Renewal">Expired / Needs renewal</option>
+          <option value="No Passport Yet">Do not have a passport yet</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="passportNumber">Passport Number (if available)</label>
+        <input type="text" id="passportNumber" name="Passport_Number" placeholder="Optional">
+      </div>
+
+      <!-- SECTION 3: JOB POSITION SELECTION -->
+      <div class="section-title">3. Job Position Selection</div>
+
+      <div class="form-group">
+        <label for="jobCategory">Select Preferred Position <span class="req">*</span></label>
+        <select id="jobCategory" name="Preferred_Job" required>
+          <option value="" disabled selected>Choose from available positions...</option>
+          <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+          <option value="Administrative Assistant">Administrative Assistant</option>
+          <option value="Bartender">Bartender</option>
+          <option value="Butcher">Butcher</option>
+          <option value="Caregiver">Caregiver</option>
+          <option value="Carpenter">Carpenter</option>
+          <option value="Cashier">Cashier</option>
+          <option value="Chef">Chef and Cook</option>
+          <option value="Cleaner">Cleaning Staff / Cleaner</option>
+          <option value="Construction Worker">Construction Worker</option>
+          <option value="Customer Service">Customer Service Representative</option>
+          <option value="Data Entry Clerk">Data Entry Clerk</option>
+          <option value="Driver">Truck and Delivery Driver</option>
+          <option value="Electrician">Electrician</option>
+          <option value="Fabricator">Fabricator</option>
+          <option value="Factory Worker">Factory / Production Worker</option>
+          <option value="Financial Analyst">Financial Analyst</option>
+          <option value="Forklift Operator">Forklift Operator</option>
+          <option value="Gardener">Gardener</option>
+          <option value="Graphic Designer">Graphic Designer</option>
+          <option value="Healthcare Assistant">Healthcare Assistant</option>
+          <option value="Helper">Helper</option>
+          <option value="Hotel Receptionist">Hotel Receptionist and Manager</option>
+          <option value="HR Assistant">Human Resource Assistant</option>
+          <option value="IT Support">IT Support Technician</option>
+          <option value="Kitchen Assistant">Kitchen Assistant</option>
+          <option value="Logistics Assistant">Logistics Assistant</option>
+          <option value="Maintenance Worker">Maintenance Worker</option>
+          <option value="Marketing Specialist">Marketing Specialist</option>
+          <option value="Mechanical Technician">Mechanical Technician</option>
+          <option value="Nanny">Nanny</option>
+          <option value="Office Clerk">Office Clerk</option>
+          <option value="Packer">Packer / Packaging Worker</option>
+          <option value="Painter">Painter</option>
+          <option value="Plumber">Plumber</option>
+          <option value="Project Coordinator">Project Coordinator</option>
+          <option value="Receptionist">Receptionist</option>
+          <option value="Registered Nurse">Registered Nurse</option>
+          <option value="Restaurant Supervisor">Restaurant Supervisor</option>
+          <option value="Retail Assistant">Retail Assistant</option>
+          <option value="Sales Person">Sales Representative</option>
+          <option value="Security Personnel">Security Personnel</option>
+          <option value="Software Developer">Software Developer</option>
+          <option value="Stocker">Stocker</option>
+          <option value="Store Clerk">Store Clerk</option>
+          <option value="Teacher">Teacher / Educator</option>
+          <option value="Technician">Technician</option>
+          <option value="Waiter">Waiter and Waitress</option>
+          <option value="Warehouse Worker">Warehouse Worker</option>
+          <option value="Welder">Welder</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Years of Relevant Experience <span class="req">*</span></label>
+        <select id="experience" name="Experience_Years" required>
+          <option value="" disabled selected>Select experience level...</option>
+          <option value="Entry Level / Willing to train">Entry Level / Willing to train</option>
+          <option value="1 - 2 Years">1 - 2 Years</option>
+          <option value="3 - 5 Years">3 - 5 Years</option>
+          <option value="5+ Years">5+ Years</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="education">Highest Level of Education <span class="req">*</span></label>
+        <select id="education" name="Education_Level" required>
+          <option value="" disabled selected>Select education level...</option>
+          <option value="High School / Secondary Certificate">High School / Secondary Certificate</option>
+          <option value="Vocational / Trade Certificate">Vocational / Trade Certificate</option>
+          <option value="Diploma">Diploma</option>
+          <option value="Bachelor's Degree or Higher">Bachelor's Degree or Higher</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="languages">Languages Spoken & Proficiency <span class="req">*</span></label>
+        <input type="text" id="languages" name="Languages" required placeholder="e.g. English (Fluent), French (Basic)">
+      </div>
+
+      <!-- SECTION 4: REQUIRED DOCUMENTS -->
+      <div class="section-title">4. Document Readiness</div>
+
+      <div class="form-group">
+        <label>Tick the documents you currently hold ready:</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox" name="Doc_CV" value="Yes"> Updated Professional CV / Resume
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Doc_Police_Clearance" value="Yes"> Certificate of Good Conduct (Police Clearance)
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Doc_Certificates" value="Yes"> Academic / Professional Certificates
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="Doc_Passport_Photos" value="Yes"> Biometric Passport Photos
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Additional Notes or Qualifications</label>
+        <textarea id="notes" name="Additional_Notes" placeholder="Mention any extra certifications, license details, or specific experience..."></textarea>
+      </div>
+
+      <button type="submit" id="submitBtn">Submit Application Online</button>
+      <div id="formAlert" class="alert"></div>
+    </form>
+
+    <div class="footer-note">
+      <div>WORK IN LUXEMBOURG – Connecting African Talent with European Employment Opportunities.</div>
+      <div class="copyright">&copy; 2026 Work in Luxembourg. All Rights Reserved.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('luxForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const alertBox = document.getElementById('formAlert');
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting Application...';
+    alertBox.className = 'alert';
+
+    try {
+      const response = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        alertBox.textContent = '✅ Application submitted successfully! Applicants who meet the initial selection criteria will receive an official notification via email within 72 hours from luxemburgjobopportunities2026@gmail.com (please monitor your inbox and spam/junk folders regularly).';
+        alertBox.className = 'alert success';
+        this.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      alertBox.textContent = '❌ Network error or connection issue. Please try again.';
+      alertBox.className = 'alert error';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Application Online';
+    }
+  });
+</script>
+
+</body>
+</html>
