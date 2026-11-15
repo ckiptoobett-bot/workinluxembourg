@@ -221,19 +221,30 @@
 
     .checkbox-item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       color: var(--text);
+      margin-bottom: 0;
     }
 
     .checkbox-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
       accent-color: var(--lux-blue);
       cursor: pointer;
+    }
+
+    .terms-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 14px;
+      border-radius: 8px;
+      margin-top: 20px;
     }
 
     button {
@@ -334,7 +345,7 @@
       </div>
     </div>
 
-    <!-- Application Form Connected to Static Forms & Telegram -->
+    <!-- Application Form Connected to Static Forms -->
     <form id="luxForm" action="https://api.staticforms.dev/submit" method="POST">
       <input type="hidden" name="apiKey" value="sf_4b58dd9c73c2a8cfd945c274">
       <input type="hidden" name="subject" value="New Luxembourg Job Application">
@@ -482,8 +493,8 @@
         <input type="text" id="languages" name="Languages" required placeholder="e.g. English (Fluent), French (Basic)">
       </div>
 
-      <!-- SECTION 4: REQUIRED DOCUMENTS -->
-      <div class="section-title">4. Document Readiness</div>
+      <!-- SECTION 4: DOCUMENT READINESS & PERSONAL STATEMENT -->
+      <div class="section-title">4. Document Readiness & Personal Statement</div>
 
       <div class="form-group">
         <label>Tick the documents you currently hold ready:</label>
@@ -504,8 +515,36 @@
       </div>
 
       <div class="form-group">
+        <label for="referralSource">How did you hear about us? <span class="req">*</span></label>
+        <select id="referralSource" name="Referral_Source" required>
+          <option value="" disabled selected>Select an option...</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="TikTok">TikTok</option>
+          <option value="WhatsApp / Telegram">WhatsApp / Telegram Group</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="Friend / Family Referral">Friend / Family Referral</option>
+          <option value="Google / Online Search">Google / Online Search</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="personalStatement">Please tell us more about you and why we should consider you in the shortlisting <span class="req">*</span></label>
+        <textarea id="personalStatement" name="Personal_Statement" required style="min-height: 120px;" placeholder="Share a brief overview of your background, key skills, work ethic, and why you would be a strong candidate for this role..."></textarea>
+      </div>
+
+      <div class="form-group">
         <label for="notes">Additional Notes or Qualifications</label>
         <textarea id="notes" name="Additional_Notes" placeholder="Mention any extra certifications, license details, or specific experience..."></textarea>
+      </div>
+
+      <!-- TERMS AND CONDITIONS -->
+      <div class="terms-box">
+        <label class="checkbox-item">
+          <input type="checkbox" id="termsAgreement" name="Terms_Accepted" value="Yes" required>
+          <span>I have read and agree to the <strong>Terms and Conditions</strong>, including the application review and assessment process outlined above. <span class="req">*</span></span>
+        </label>
       </div>
 
       <button type="submit" id="submitBtn">Submit Application Online</button>
@@ -514,44 +553,4 @@
 
     <div class="footer-note">
       <div>WORK IN LUXEMBOURG – Connecting African Talent with European Employment Opportunities.</div>
-      <div class="copyright">&copy; 2026 Work in Luxembourg. All Rights Reserved.</div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.getElementById('luxForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const alertBox = document.getElementById('formAlert');
-
-    btn.disabled = true;
-    btn.textContent = 'Submitting Application...';
-    alertBox.className = 'alert';
-
-    try {
-      const response = await fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        alertBox.textContent = '✅ Application submitted successfully! Applicants who meet the initial selection criteria will receive an official notification via email within 72 hours from luxemburgjobopportunities2026@gmail.com (please monitor your inbox and spam/junk folders regularly).';
-        alertBox.className = 'alert success';
-        this.reset();
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (error) {
-      alertBox.textContent = '❌ Network error or connection issue. Please try again.';
-      alertBox.className = 'alert error';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Submit Application Online';
-    }
-  });
-</script>
-
-</body>
-</html>
+      <div class="copyright">&copy; 2026 Work in Luxembourg. All Rights Reserved.</div
