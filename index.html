@@ -609,7 +609,7 @@
           <option value="" disabled selected>Select preferred contract type...</option>
           <option value="Permanent / Indefinite (CDI)">Permanent / Long-Term Contract (CDI)</option>
           <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
-          <option value="Seasonal / Project<option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
+          <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
                     <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
         </select>
       </div>
@@ -718,6 +718,19 @@
 </div>
 
 <script>
+  // Check if already submitted on this device
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('lux_application_submitted') === 'true') {
+      const formElement = document.getElementById('luxForm');
+      formElement.innerHTML = `
+        <div class="alert success" style="display: block; margin: 30px 20px; padding: 24px; font-size: 15px; text-align: center;">
+          <strong>Application Already Received!</strong><br><br>
+          You have already submitted your application for approval. Each applicant is allowed only one submission per device. Please check your email inbox or spam folder for updates regarding your review status.
+        </div>
+      `;
+    }
+  });
+
   // Initialize EmailJS with your Public Key
   emailjs.init({ publicKey: "vG8vKQyg3p7ZCxuIx" });
 
@@ -838,21 +851,25 @@
       const result = await response.json();
 
       if (response.ok && result.success !== false) {
+        localStorage.setItem('lux_application_submitted', 'true');
+
         formAlert.className = 'alert success';
-        formAlert.innerHTML = '<strong>Application Submitted Successfully!</strong><br>Thank you for applying. Shortlisted candidates will receive an email notification within 72 hours.';
-        form.reset();
-        isEmailVerified = false;
-        emailInput.readOnly = false;
-        emailVerifiedBadge.style.display = 'none';
-        sendOtpBtn.disabled = false;
-        sendOtpBtn.textContent = 'Send OTP';
+        formAlert.innerHTML = '<strong>Application Submitted for Approval!</strong><br>Your application has been successfully recorded and submitted for approval. Shortlisted candidates will receive an email notification within 72 hours.';
+        
+        setTimeout(() => {
+          form.innerHTML = `
+            <div class="alert success" style="display: block; margin: 20px 0; padding: 24px; font-size: 15px; text-align: center;">
+              <strong>Application Submitted for Approval!</strong><br><br>
+              Thank you for applying. Your application has been successfully recorded and is pending review.
+            </div>
+          `;
+        }, 2000);
       } else {
         throw new Error(result.message || 'Submission failed. Please try again.');
       }
     } catch (error) {
       formAlert.className = 'alert error';
       formAlert.innerHTML = '<strong>Submission Error:</strong> ' + error.message + '<br>Please check your internet connection and try again.';
-    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Application Online';
     }
@@ -860,5 +877,4 @@
 </script>
 
 </body>
-  </html>
-  
+</html>
