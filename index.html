@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work in Luxembourg | International Employment Opportunities - 2026</title>
+  <!-- EmailJS CDN SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
       --lux-blue: #00A1DE;
@@ -239,6 +241,90 @@
       cursor: pointer;
     }
 
+    .email-verify-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .email-verify-row input {
+      flex: 1;
+    }
+
+    .btn-verify {
+      width: auto;
+      margin-top: 0;
+      padding: 12px 16px;
+      font-size: 14px;
+      background-color: var(--dark);
+      white-space: nowrap;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btn-verify:hover {
+      background-color: #1e293b;
+    }
+
+    .otp-box {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+    }
+
+    .otp-box.active {
+      display: block;
+    }
+
+    .otp-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .otp-row input {
+      letter-spacing: 0.25em;
+      font-weight: 700;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .btn-confirm-otp {
+      width: auto;
+      margin-top: 0;
+      padding: 12px 18px;
+      font-size: 14px;
+      background-color: #16a34a;
+      white-space: nowrap;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btn-confirm-otp:hover {
+      background-color: #15803d;
+    }
+
+    .otp-status {
+      font-size: 13px;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .otp-status.verified {
+      color: #16a34a;
+    }
+
+    .otp-status.error {
+      color: var(--lux-red);
+    }
+
     .declaration-box {
       background: #eff6ff;
       border: 1px solid #bfdbfe;
@@ -255,7 +341,7 @@
       line-height: 1.5;
     }
 
-    button {
+    button[type="submit"] {
       width: 100%;
       padding: 16px;
       background-color: var(--lux-blue);
@@ -269,11 +355,11 @@
       transition: background-color 0.2s;
     }
 
-    button:hover {
+    button[type="submit"]:hover {
       background-color: #0284c7;
     }
 
-    button:disabled {
+    button[type="submit"]:disabled {
       background-color: #94a3b8;
       cursor: not-allowed;
     }
@@ -353,7 +439,7 @@
       </div>
     </div>
 
-    <!-- Application Form Connected to Static Forms -->
+    <!-- Application Form Connected to Static Forms & EmailJS -->
     <form id="luxForm" action="https://api.staticforms.dev/submit" method="POST">
       <input type="hidden" name="apiKey" value="sf_4b58dd9c73c2a8cfd945c274">
       <input type="hidden" name="subject" value="New Luxembourg Job Application">
@@ -382,8 +468,21 @@
       </div>
 
       <div class="form-group">
-        <label for="email">Email Address <span class="req">*</span></label>
-        <input type="email" id="email" name="Email" required placeholder="e.g. applicant@email.com">
+        <label for="email">Email Address (Verification Required) <span class="req">*</span></label>
+        <div class="email-verify-row">
+          <input type="email" id="email" name="Email" required placeholder="e.g. applicant@email.com">
+          <button type="button" id="sendOtpBtn" class="btn-verify">Send OTP</button>
+        </div>
+
+        <div id="otpBox" class="otp-box">
+          <label for="otpInput" style="font-size: 13px; margin-bottom: 4px;">Enter 6-Digit Code Sent to Your Email:</label>
+          <div class="otp-row">
+            <input type="text" id="otpInput" maxlength="6" inputmode="numeric" placeholder="000000">
+            <button type="button" id="verifyOtpBtn" class="btn-confirm-otp">Verify Code</button>
+          </div>
+          <div id="otpStatus" class="otp-status"></div>
+        </div>
+        <div id="emailVerifiedBadge" class="otp-status verified" style="display: none;">✓ Email Address Verified</div>
       </div>
 
       <!-- SECTION 2: PASSPORT & ELIGIBILITY -->
@@ -510,7 +609,7 @@
           <option value="" disabled selected>Select preferred contract type...</option>
           <option value="Permanent / Indefinite (CDI)">Permanent / Long-Term Contract (CDI)</option>
           <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
-          <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
+          <option value="Seasonal / Project-Based">Seasona          <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
           <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
         </select>
       </div>
@@ -551,8 +650,6 @@
             <input type="checkbox" name="Doc_CV" value="Yes"> Updated Professional CV / Resume
           </label>
           <label class="checkbox-item">
-            <input type="checkbox" name="Doc_Police_Clearance" value="Yes"> Certificate of Good Conduct (Police Clearance &lt; 3 mos)
-          </labe          <label class="checkbox-item">
             <input type="checkbox" name="Doc_Police_Clearance" value="Yes"> Certificate of Good Conduct (Police Clearance &lt; 3 mos)
           </label>
           <label class="checkbox-item">
@@ -621,12 +718,99 @@
 </div>
 
 <script>
+  // Initialize EmailJS
+  emailjs.init({ publicKey: "vG8vKQyg3p7ZCXulx" });[span_2](start_span)[span_2](end_span)
+
+  let generatedOtp = null;
+  let isEmailVerified = false;
+  let verifiedEmailAddress = "";
+
+  const emailInput = document.getElementById('email');
+  const sendOtpBtn = document.getElementById('sendOtpBtn');
+  const otpBox = document.getElementById('otpBox');
+  const otpInput = document.getElementById('otpInput');
+  const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+  const otpStatus = document.getElementById('otpStatus');
+  const emailVerifiedBadge = document.getElementById('emailVerifiedBadge');
+
   const form = document.getElementById('luxForm');
   const submitBtn = document.getElementById('submitBtn');
   const formAlert = document.getElementById('formAlert');
 
+  emailInput.addEventListener('input', () => {
+    if (isEmailVerified && emailInput.value.trim() !== verifiedEmailAddress) {
+      isEmailVerified = false;
+      verifiedEmailAddress = "";
+      emailVerifiedBadge.style.display = 'none';
+      sendOtpBtn.disabled = false;
+      sendOtpBtn.textContent = 'Send OTP';
+    }
+  });
+
+  sendOtpBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    const fullName = document.getElementById('fullName').value.trim() || 'Applicant';
+
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address first.');
+      emailInput.focus();
+      return;
+    }
+
+    generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    sendOtpBtn.disabled = true;
+    sendOtpBtn.textContent = 'Sending...';
+    otpStatus.textContent = '';
+
+    try {
+      await emailjs.send('service_359150e', 'template_2dxcj6g', {[span_3](start_span)[span_3](end_span)
+        to_email: email,
+        email: email,
+        to_name: fullName,
+        otp_code: generatedOtp,
+        passcode: generatedOtp
+      });
+
+      otpBox.classList.add('active');
+      otpStatus.className = 'otp-status';
+      otpStatus.textContent = 'Verification code sent! Check your inbox or spam folder.';
+      sendOtpBtn.textContent = 'Resend OTP';
+      sendOtpBtn.disabled = false;
+      otpInput.focus();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      alert('Failed to send verification code. Please check your email address and try again.');
+      sendOtpBtn.disabled = false;
+      sendOtpBtn.textContent = 'Send OTP';
+    }
+  });
+
+  verifyOtpBtn.addEventListener('click', () => {
+    const enteredCode = otpInput.value.trim();
+
+    if (enteredCode === generatedOtp && generatedOtp !== null) {
+      isEmailVerified = true;
+      verifiedEmailAddress = emailInput.value.trim();
+      otpBox.classList.remove('active');
+      emailVerifiedBadge.style.display = 'block';
+      sendOtpBtn.textContent = 'Verified';
+      sendOtpBtn.disabled = true;
+      emailInput.readOnly = true;
+    } else {
+      otpStatus.className = 'otp-status error';
+      otpStatus.textContent = 'Incorrect code. Please check your email and try again.';
+    }
+  });
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    if (!isEmailVerified) {
+      formAlert.className = 'alert error';
+      formAlert.innerHTML = '<strong>Email Verification Required:</strong> Please click <strong>Send OTP</strong> next to your email address and verify your 6-digit code before submitting.';
+      emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting Application...';
@@ -639,6 +823,7 @@
     formData.forEach((value, key) => {
       jsonData[key] = value;
     });
+    jsonData['Email_Verified'] = 'Yes';
 
     try {
       const response = await fetch('https://api.staticforms.dev/submit', {
@@ -655,6 +840,11 @@
         formAlert.className = 'alert success';
         formAlert.innerHTML = '<strong>Application Submitted Successfully!</strong><br>Thank you for applying. Shortlisted candidates will receive an email notification within 72 hours.';
         form.reset();
+        isEmailVerified = false;
+        emailInput.readOnly = false;
+        emailVerifiedBadge.style.display = 'none';
+        sendOtpBtn.disabled = false;
+        sendOtpBtn.textContent = 'Send OTP';
       } else {
         throw new Error(result.message || 'Submission failed. Please try again.');
       }
@@ -669,5 +859,5 @@
 </script>
 
 </body>
-  </html>
-  
+          </html>
+          
