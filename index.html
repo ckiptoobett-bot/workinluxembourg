@@ -33,14 +33,14 @@
             border-bottom: 4px solid var(--accent);
         }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 20px auto;
             background: white;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        h2 { color: var(--primary); font-size: 1.25rem; margin-top: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        h2 { color: var(--primary); font-size: 1.2rem; margin-top: 1.8rem; border-bottom: 2px solid #eee; padding-bottom: 8px; }
         .form-group {
             margin-bottom: 15px;
         }
@@ -50,7 +50,7 @@
             margin-bottom: 5px;
             font-size: 0.9rem;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -77,7 +77,8 @@
             background: var(--primary);
             width: 100%;
             padding: 14px;
-            margin-top: 20px;
+            margin-top: 25px;
+            font-size: 1.1rem;
         }
         .checkbox-group {
             display: flex;
@@ -121,8 +122,8 @@
 <div class="container">
     <form id="applicationForm">
         
-        <!-- Email & OTP Section -->
-        <h2>1. Email Verification</h2>
+        <!-- Section 1: Email & OTP Verification -->
+        <h2>1. Secure Email Verification</h2>
         <div id="otpSection">
             <div class="form-group">
                 <label for="email">Email Address *</label>
@@ -141,23 +142,8 @@
             </div>
         </div>
 
-        <!-- Document Readiness -->
-        <h2>2. Document Readiness (2026 Standards)</h2>
-        <div class="fee-notice">
-            <strong>Processing Fee Note:</strong> Standard administrative processing fee is <strong>€50</strong>.
-        </div>
-        <div class="form-group">
-            <label>Required Immigration Checklists:</label>
-            <div class="checkbox-group">
-                <label class="checkbox-item"><input type="checkbox" name="docs" value="Passport" required> Valid International Passport (6+ months validity)</label>
-                <label class="checkbox-item"><input type="checkbox" name="docs" value="Police Clearance" required> Police Clearance Certificate (Good Conduct)</label>
-                <label class="checkbox-item"><input type="checkbox" name="docs" value="Degree Legalization" required> Degree/Diploma Legalization & Translation</label>
-                <label class="checkbox-item"><input type="checkbox" name="docs" value="Photos"> Biometric Passport Photos (x4)</label>
-            </div>
-        </div>
-
-        <!-- Personal Info -->
-        <h2>3. Personal Information</h2>
+        <!-- Section 2: Personal Information -->
+        <h2>2. Personal Information</h2>
         <div class="form-group">
             <label for="fullName">Full Name *</label>
             <input type="text" id="fullName" required placeholder="As shown on passport">
@@ -174,8 +160,40 @@
             <label for="phone">Phone Number (with Country Code) *</label>
             <input type="tel" id="phone" required placeholder="+352 ...">
         </div>
+        <div class="form-group">
+            <label for="address">Current Residential Address *</label>
+            <textarea id="address" rows="2" required placeholder="Street, City, Country"></textarea>
+        </div>
 
-        <!-- Job Selection -->
+        <!-- Section 3: Professional Background -->
+        <h2>3. Professional Background & Education</h2>
+        <div class="form-group">
+            <label for="education">Highest Level of Education *</label>
+            <select id="education" required>
+                <option value="">-- Select Education Level --</option>
+                <option value="Doctorate / Ph.D">Doctorate / Ph.D</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Higher National Diploma (HND)">Higher National Diploma (HND)</option>
+                <option value="High School Diploma">High School Diploma</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="experience">Years of Professional Experience *</label>
+            <select id="experience" required>
+                <option value="">-- Select Experience --</option>
+                <option value="Less than 1 year">Less than 1 year</option>
+                <option value="1 - 3 years">1 - 3 years</option>
+                <option value="3 - 5 years">3 - 5 years</option>
+                <option value="5+ years">5+ years</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cvLink">CV / Resume Link (Google Drive / LinkedIn / Portfolio) *</label>
+            <input type="url" id="cvLink" required placeholder="https://...">
+        </div>
+
+        <!-- Section 4: Job Position Selection -->
         <h2>4. Job Position Selection</h2>
         <div class="form-group">
             <label for="position">Target Sector / Role *</label>
@@ -188,6 +206,21 @@
                 <option value="Engineering & Construction">Engineering & Construction</option>
                 <option value="General Labor & Logistics">General Labor & Logistics</option>
             </select>
+        </div>
+
+        <!-- Section 5: Document Readiness & Fees -->
+        <h2>5. Document Readiness (2026 Standards)</h2>
+        <div class="fee-notice">
+            <strong>Processing Fee Note:</strong> Standard administrative processing fee is <strong>€50</strong>.
+        </div>
+        <div class="form-group">
+            <label>Required Immigration Checklists:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="docs" value="Passport" required> Valid International Passport (6+ months validity)</label>
+                <label class="checkbox-item"><input type="checkbox" name="docs" value="Police Clearance" required> Police Clearance Certificate (Good Conduct)</label>
+                <label class="checkbox-item"><input type="checkbox" name="docs" value="Degree Legalization" required> Degree/Diploma Legalization & Translation</label>
+                <label class="checkbox-item"><input type="checkbox" name="docs" value="Photos"> Biometric Passport Photos (x4)</label>
+            </div>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn" disabled style="opacity: 0.6;">Submit Verified Application</button>
