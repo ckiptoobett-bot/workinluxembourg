@@ -449,7 +449,7 @@
 
       <div class="form-group">
         <label for="fullName">Full Name (as on Passport) <span class="req">*</span></label>
-        <input type="text" id="fullName" name="Full_Name" required placeholder="e.g. Samuel Kamau Mwangi">
+        <input type="text" id="fullName" name="Full_Name" required placeholder="e.g. Marie Schneider">
       </div>
 
       <div class="form-group">
@@ -459,12 +459,12 @@
 
       <div class="form-group">
         <label for="nationality">Nationality / Country of Residence <span class="req">*</span></label>
-        <input type="text" id="nationality" name="Nationality_Residence" required placeholder="e.g. Kenyan / Nairobi, Kenya">
+        <input type="text" id="nationality" name="Nationality_Residence" required placeholder="e.g. Luxembourger / Luxembourg City, Luxembourg">
       </div>
 
       <div class="form-group">
         <label for="phone">WhatsApp / Phone Number (with Country Code) <span class="req">*</span></label>
-        <input type="tel" id="phone" name="WhatsApp_Phone" required placeholder="e.g. +254 712 345 678">
+        <input type="tel" id="phone" name="WhatsApp_Phone" required placeholder="e.g. +352 621 123 456">
       </div>
 
       <div class="form-group">
@@ -609,8 +609,8 @@
           <option value="" disabled selected>Select preferred contract type...</option>
           <option value="Permanent / Indefinite (CDI)">Permanent / Long-Term Contract (CDI)</option>
           <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
-                    <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
-          <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
+          <option value="Seasonal / Project<option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
+                    <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
         </select>
       </div>
 
@@ -763,7 +763,6 @@
     otpStatus.textContent = '';
 
     try {
-      // Using Service ID: service_luxembourg and Template ID: template_2dxcj6g
       await emailjs.send('service_luxembourg', 'template_2dxcj6g', {
         email: email,
         to_email: email,
@@ -861,4 +860,5 @@
 </script>
 
 </body>
-</html>
+  </html>
+  
