@@ -718,8 +718,7 @@
 </div>
 
 <script>
-  // Initialize EmailJS
-  emailjs.init({ publicKey: "vG8vKQyg3p7ZCXulx" });[span_2](start_span)[span_2](end_span)
+  emailjs.init({ publicKey: "vG8vKQyg3p7ZCXulx" });
 
   let generatedOtp = null;
   let isEmailVerified = false;
@@ -763,12 +762,14 @@
     otpStatus.textContent = '';
 
     try {
-      await emailjs.send('service_359150e', 'template_2dxcj6g', {[span_3](start_span)[span_3](end_span)
+      await emailjs.send('service_359150e', 'template_2dxcj6g', {
         to_email: email,
         email: email,
+        user_email: email,
         to_name: fullName,
         otp_code: generatedOtp,
-        passcode: generatedOtp
+        passcode: generatedOtp,
+        otp: generatedOtp
       });
 
       otpBox.classList.add('active');
@@ -779,7 +780,8 @@
       otpInput.focus();
     } catch (error) {
       console.error('EmailJS Error:', error);
-      alert('Failed to send verification code. Please check your email address and try again.');
+      const errMsg = error?.text || error?.message || JSON.stringify(error);
+      alert('EmailJS Error: ' + errMsg);
       sendOtpBtn.disabled = false;
       sendOtpBtn.textContent = 'Send OTP';
     }
@@ -859,5 +861,5 @@
 </script>
 
 </body>
-          </html>
-          
+  </html>
+  
