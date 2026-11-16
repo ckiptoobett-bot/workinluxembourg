@@ -718,6 +718,7 @@
 </div>
 
 <script>
+  // Initialize EmailJS with your Public Key
   emailjs.init({ publicKey: "vG8vKQyg3p7ZCXulx" });
 
   let generatedOtp = null;
@@ -762,14 +763,13 @@
     otpStatus.textContent = '';
 
     try {
-      await emailjs.send('service_359150e', 'template_2dxcj6g', {
-        to_email: email,
+      // Using your Service ID: service_359150e and Template ID: wc3bg9x
+      await emailjs.send('service_359150e', 'wc3bg9x', {
         email: email,
-        user_email: email,
+        to_email: email,
         to_name: fullName,
-        otp_code: generatedOtp,
         passcode: generatedOtp,
-        otp: generatedOtp
+        time: '15 minutes'
       });
 
       otpBox.classList.add('active');
