@@ -609,7 +609,7 @@
           <option value="" disabled selected>Select preferred contract type...</option>
           <option value="Permanent / Indefinite (CDI)">Permanent / Long-Term Contract (CDI)</option>
           <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
-          <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
+                    <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
           <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
         </select>
       </div>
@@ -763,8 +763,8 @@
     otpStatus.textContent = '';
 
     try {
-      // Using Service ID: service_luxembourg and Template ID: wc3bg9x
-      await emailjs.send('service_luxembourg', 'wc3bg9x', {
+      // Using Service ID: service_luxembourg and Template ID: template_2dxcj6g
+      await emailjs.send('service_luxembourg', 'template_2dxcj6g', {
         email: email,
         to_email: email,
         to_name: fullName,
@@ -861,5 +861,4 @@
 </script>
 
 </body>
-            </html>
-            
+</html>
