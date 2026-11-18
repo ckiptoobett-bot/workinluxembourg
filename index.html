@@ -21,6 +21,8 @@
             --bg: #f8fafc;
             --card: #ffffff;
             --border: #cbd5e1;
+            --footer-bg: #111827;
+            --footer-text: #9ca3af;
         }
 
         * {
@@ -47,7 +49,34 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+        }
+
+        /* Site Header Brand */
+        .site-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo span {
+            color: var(--lux-blue);
         }
 
         /* View Controller */
@@ -56,7 +85,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 75vh;
+            flex: 1;
             text-align: center;
         }
 
@@ -209,24 +238,6 @@
             text-decoration: underline;
         }
 
-        .top-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-            background: var(--card);
-            padding: 12px 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .user-greeting {
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1rem;
-        }
-
         .error-msg {
             color: var(--lux-red);
             font-size: 0.85rem;
@@ -241,12 +252,57 @@
             margin-top: 8px;
         }
 
-        .footer-copyright {
+        /* Professional Footer Style matching reference */
+        .site-footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            width: 100%;
+            border-radius: 12px;
+            padding: 30px 24px;
+            margin-top: 30px;
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #374151;
+        }
+
+        .footer-section h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
             text-align: center;
-            margin: 24px 0 12px 0;
-            color: var(--muted);
-            font-size: 0.82rem;
-            line-height: 1.5;
+            color: #6b7280;
+            font-size: 0.8rem;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -254,189 +310,188 @@
 
     <div class="container">
 
-        <!-- AUTHENTICATION VIEW -->
-        <div id="authView" class="auth-view">
-            <div class="card" style="max-width: 420px; margin: 0 auto;">
-                
-                <!-- Sign In Form -->
-                <div id="signinContainer">
-                    <h1>Welcome Back</h1>
-                    <p class="subtitle">Sign in to access Luxembourg Job Opportunities</p>
-                    <form id="signinForm" onsubmit="handleSignIn(event)">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="signinEmail" required placeholder="name@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="signinPassword" required placeholder="••••••••">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                        <div id="signinError" class="error-msg"></div>
-                    </form>
-                    <div class="switch-text">
-                        Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
-                    </div>
-                </div>
+        <div>
+            <!-- Header Brand Bar -->
+            <header class="site-header">
+                <div class="brand-logo">Work in <span>Luxembourg</span></div>
+                <div id="headerUserStatus" style="font-size: 0.85rem; font-weight: 600; color: var(--muted);">Official Portal</div>
+            </header>
 
-                <!-- Sign Up Form -->
-                <div id="signupContainer" style="display: none;">
-                    <h1>Create Account</h1>
-                    <p class="subtitle">Register to apply for jobs in Luxembourg</p>
-                    <form id="signupForm" onsubmit="handleSignUp(event)">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" id="signupName" required placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="signupEmail" required placeholder="name@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="signupPassword" required placeholder="••••••••">
-                        </div>
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" id="signupConfirmPassword" required placeholder="••••••••">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                        <div id="signupError" class="error-msg"></div>
-                        <div id="signupSuccess" class="success-msg"></div>
-                    </form>
-                    <div class="switch-text">
-                        Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="footer-copyright">
-                Official International Recruitment Portal - Luxembourg 2026<br>
-                &copy; 2026 Work in Luxembourg. All rights reserved.
-            </div>
-        </div>
-
-        <!-- MAIN APPLICATION VIEW -->
-        <div id="mainAppView" class="main-app-view">
-            
-            <div class="top-bar">
-                <span class="user-greeting" id="userGreeting">Welcome, User</span>
-            </div>
-
-            <div class="card">
-                <h1>Work in Luxembourg 2026</h1>
-                <p class="subtitle">Complete your official verified application form below.</p>
-                
-                <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+            <!-- AUTHENTICATION VIEW -->
+            <div id="authView" class="auth-view">
+                <div class="card" style="max-width: 420px; margin: 0 auto;">
                     
-                    <!-- Section 1 -->
-                    <h3 class="section-title">1. PERSONAL INFORMATION</h3>
-                    <div class="form-group">
-                        <label>Full Name (as on Passport) *</label>
-                        <input type="text" id="applicantFullName" required placeholder="e.g. Marie Schneider">
-                    </div>
-                    <div class="form-group">
-                        <label>Date of Birth *</label>
-                        <input type="date" id="applicantDOB" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Nationality / Country of Residence *</label>
-                        <input type="text" id="applicantNationality" required placeholder="e.g. Luxembourger / Luxembourg City, Luxembourg">
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp / Phone Number (with Country Code) *</label>
-                        <input type="tel" id="applicantPhone" required placeholder="e.g. +352 691 234 567">
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address (Verification Required) *</label>
-                        <div class="input-with-btn">
-                            <input type="email" id="applicantEmail" required placeholder="e.g. applicant@email.com">
-                            <button type="button" class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
+                    <!-- Sign In Form -->
+                    <div id="signinContainer">
+                        <h1>Welcome Back</h1>
+                        <p class="subtitle">Sign in to access Luxembourg Job Opportunities</p>
+                        <form id="signinForm" onsubmit="handleSignIn(event)">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="signinEmail" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" id="signinPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <div id="signinError" class="error-msg"></div>
+                        </form>
+                        <div class="switch-text">
+                            Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
                         </div>
-                        <div id="otpStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
-                    </div>
-                    <div class="form-group" id="otpSection" style="display: none;">
-                        <label>Enter Verification Code (OTP) *</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="otpInput" placeholder="Enter 6-digit code">
-                            <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
-                        </div>
-                        <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
                     </div>
 
-                    <!-- Section 2 -->
-                    <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
-                    <div class="form-group">
-                        <label>Are you at least 18 years of age? *</label>
-                        <select id="applicantAge" required>
-                            <option value="">Select confirmation...</option>
-                            <option value="Yes">Yes, I am 18 or older</option>
-                            <option value="No">No</option>
-                        </select>
+                    <!-- Sign Up Form -->
+                    <div id="signupContainer" style="display: none;">
+                        <h1>Create Account</h1>
+                        <p class="subtitle">Register to apply for jobs in Luxembourg</p>
+                        <form id="signupForm" onsubmit="handleSignUp(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="signupName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="signupEmail" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" id="signupPassword" required placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" id="signupConfirmPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                            <div id="signupError" class="error-msg"></div>
+                            <div id="signupSuccess" class="success-msg"></div>
+                        </form>
+                        <div class="switch-text">
+                            Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Valid International Passport Status *</label>
-                        <select id="applicantPassportStatus" required>
-                            <option value="">Select passport status...</option>
-                            <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
-                            <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
-                            <option value="Expired / Needs renewal">Expired / Needs renewal</option>
-                            <option value="Do not have a passport yet">Do not have a passport yet</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Passport Number (if available)</label>
-                        <input type="text" id="applicantPassportNo" placeholder="Optional">
-    </div>
+
+                </div>
+            </div>
+
+            <!-- MAIN APPLICATION VIEW -->
+            <div id="mainAppView" class="main-app-view">
+                
+                <div class="card">
+                    <h1>Work in Luxembourg 2026</h1>
+                    <p class="subtitle">Complete your official verified application form below.</p>
+                    
+                    <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+                        
+                        <!-- Section 1 -->
+                        <h3 class="section-title">1. PERSONAL INFORMATION</h3>
+                        <div class="form-group">
+                            <label>Full Name (as on Passport) *</label>
+                            <input type="text" id="applicantFullName" required placeholder="e.g. Marie Schneider">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth *</label>
+                            <input type="date" id="applicantDOB" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nationality / Country of Residence *</label>
+                            <input type="text" id="applicantNationality" required placeholder="e.g. Luxembourger / Luxembourg City, Luxembourg">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp / Phone Number (with Country Code) *</label>
+                            <input type="tel" id="applicantPhone" required placeholder="e.g. +352 691 234 567">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address (Verification Required) *</label>
+                            <div class="input-with-btn">
+                                <input type="email" id="applicantEmail" required placeholder="e.g. applicant@email.com">
+                                <button type="button" class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
+                            </div>
+                            <div id="otpStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                        </div>
+                        <div class="form-group" id="otpSection" style="display: none;">
+                            <label>Enter Verification Code (OTP) *</label>
+                            <div class="input-with-btn">
+                                <input type="text" id="otpInput" placeholder="Enter 6-digit code">
+                                <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
+                            </div>
+                            <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
+                        <div class="form-group">
+                            <label>Are you at least 18 years of age? *</label>
+                            <select id="applicantAge" required>
+                                <option value="">Select confirmation...</option>
+                                <option value="Yes">Yes, I am 18 or older</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Valid International Passport Status *</label>
+                            <select id="applicantPassportStatus" required>
+                                <option value="">Select passport status...</option>
+                                <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                                <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                                <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                                <option value="Do not have a passport yet">Do not have a passport yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Number (if available)</label>
+                            <input type="text" id="applicantPassportNo" placeholder="Optional">
+                        </div>
+
                         <!-- Section 3 -->
-                    <h3 class="section-title">3. JOB POSITION SELECTION</h3>
-                    <div class="form-group">
-                        <label>Select Preferred Position *</label>
-                        <select id="jobCategory" required>
-                            <option value="">Choose from available positions...</option>
-                            <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
-                            <option value="Administrative Assistant">Administrative Assistant</option>
-                            <option value="Bartender">Bartender</option>
-                            <option value="Butcher">Butcher</option>
-                            <option value="Caregiver">Caregiver</option>
-                            <option value="Carpenter">Carpenter</option>
-                            <option value="Cashier">Cashier</option>
-                            <option value="Chef and Cook">Chef and Cook</option>
-                            <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
-                            <option value="Construction Worker">Construction Worker</option>
-                            <option value="Customer Service Representative">Customer Service Representative</option>
-                            <option value="Data Entry Clerk">Data Entry Clerk</option>
-                            <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
-                            <option value="Electrician">Electrician</option>
-                            <option value="Fabricator">Fabricator</option>
-                            <option value="Factory / Production Worker">Factory / Production Worker</option>
-                            <option value="Financial Analyst">Financial Analyst</option>
-                            <option value="Forklift Operator">Forklift Operator</option>
-                            <option value="Gardener">Gardener</option>
-                            <option value="Graphic Designer">Graphic Designer</option>
-                            <option value="Healthcare Assistant">Healthcare Assistant</option>
-                            <option value="Helper">Helper</option>
-                            <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
-                            <option value="Human Resource Assistant">Human Resource Assistant</option>
-                            <option value="IT Support Technician">IT Support Technician</option>
-                            <option value="Kitchen Assistant">Kitchen Assistant</option>
-                            <option value="Logistics Assistant">Logistics Assistant</option>
-                            <option value="Maintenance Worker">Maintenance Worker</option>
-                            <option value="Marketing Specialist">Marketing Specialist</option>
-                            <option value="Mechanical Technician">Mechanical Technician</option>
-                            <option value="Nanny">Nanny</option>
-                            <option value="Office Clerk">Office Clerk</option>
-                            <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
-                            <option value="Painter">Painter</option>
-                            <option value="Plumber">Plumber</option>
-                            <option value="Project Coordinator">Project Coordinator</option>
-                            <option value="Receptionist">Receptionist</option>
-                            <option value="Registered Nurse">Registered Nurse</option>
-                            <option value="Restaurant Supervisor">Restaurant Supervisor</option>
-                            <option value="Retail Assistant">Retail Assistant</option>
-                            <option value="Sales Representative">Sales Representative</option>
-                            <option value="Security Personnel">Security Personnel</option>
+                        <h3 class="section-title">3. JOB POSITION SELECTION</h3>
+                        <div class="form-group">
+                            <label>Select Preferred Position *</label>
+                            <select id="jobCategory" required>
+                                <option value="">Choose from available positions...</option>
+                                <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+                                <option value="Administrative Assistant">Administrative Assistant</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Butcher">Butcher</option>
+                                <option value="Caregiver">Caregiver</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Chef and Cook">Chef and Cook</option>
+                                <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
+                                <option value="Construction Worker">Construction Worker</option>
+                                <option value="Customer Service Representative">Customer Service Representative</option>
+                                <option value="Data Entry Clerk">Data Entry Clerk</option>
+                                <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Fabricator">Fabricator</option>
+                                <option value="Factory / Production Worker">Factory / Production Worker</option>
+                                <option value="Financial Analyst">Financial Analyst</option>
+                                <option value="Forklift Operator">Forklift Operator</option>
+                                <option value="Gardener">Gardener</option>
+                                <option value="Graphic Designer">Graphic Designer</option>
+                                <option value="Healthcare Assistant">Healthcare Assistant</option>
+                                <option value="Helper">Helper</option>
+                                <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
+                                <option value="Human Resource Assistant">Human Resource Assistant</option>
+                                <option value="IT Support Technician">IT Support Technician</option>
+                                <option value="Kitchen Assistant">Kitchen Assistant</option>
+                                <option value="Logistics Assistant">Logistics Assistant</option>
+                                <option value="Maintenance Worker">Maintenance Worker</option>
+                                <option value="Marketing Specialist">Marketing Specialist</option>
+                                <option value="Mechanical Technician">Mechanical Technician</option>
+                                <option value="Nanny">Nanny</option>
+                                <option value="Office Clerk">Office Clerk</option>
+                                <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
+                                <option value="Painter">Painter</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Project Coordinator">Project Coordinator</option>
+                                <option value="Receptionist">Receptionist</option>
+                                <option value="Registered Nurse">Registered Nurse</option>
+                                <option value="Restaurant Supervisor">Restaurant Supervisor</option>
+                                <option value="Retail Assistant">Retail Assistant</option>
+                                <option value="Sales Representative">Sales Representative</option>
+                                <option value="Security Personnel">Security Personnel</option>
                             <option value="Software Developer">Software Developer</option>
                             <option value="Stocker">Stocker</option>
                             <option value="Store Clerk">Store Clerk</option>
@@ -558,12 +613,32 @@
                 <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
             </div>
 
-            <div class="footer-copyright">
+        </div>
+
+        <!-- Professional Footer matching reference style -->
+        <footer class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Useful Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Legal Notice</a></li>
+                        <li><a href="#">General Terms and Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>Email: support@workinluxembourg.com</li>
+                        <li>WhatsApp Support: +352 691 234 567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
                 Official International Recruitment Portal - Luxembourg 2026<br>
                 &copy; 2026 Work in Luxembourg. All rights reserved.
             </div>
-
-        </div>
+        </footer>
 
     </div>
 
@@ -670,7 +745,7 @@
         function showMainApp(name) {
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
-            document.getElementById('userGreeting').innerText = `Welcome, ${name}`;
+            document.getElementById('headerUserStatus').innerText = `Welcome, ${name}`;
             document.getElementById('applicantFullName').value = name;
         }
 
@@ -678,6 +753,7 @@
             localStorage.removeItem('lux_user');
             document.getElementById('mainAppView').style.display = 'none';
             document.getElementById('authView').style.display = 'flex';
+            document.getElementById('headerUserStatus').innerText = 'Official Portal';
             document.getElementById('signinForm').reset();
             document.getElementById('signupForm').reset();
             toggleAuthMode('signin');
@@ -729,13 +805,13 @@
             
             if (!isEmailVerified) {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Please verify your email address with OTP before submitting.';
+                statusEl.innerText = 'Please verify your email with OTP.';
                 return;
             }
 
             statusEl.style.color = '#10b981';
             statusEl.innerText = 'Application submitted successfully!';
-                     document.getElementById('jobApplicationForm').reset();
+            document.getElementById('jobApplicationForm').reset();
             isEmailVerified = false;
             document.getElementById('otpSection').style.display = 'none';
             document.getElementById('otpStatus').innerText = '';
@@ -743,4 +819,5 @@
         }
     </script>
 </body>
-</html>
+                                </html>
+                                
