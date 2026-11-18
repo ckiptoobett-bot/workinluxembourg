@@ -159,7 +159,8 @@
         }
 
         .ecosystem-tag {
-            background: #f1f5f9;
+            background: #f1f5f9
+        ;
             padding: 8px 12px;
             border-radius: 6px;
             font-size: 0.85rem;
@@ -251,6 +252,15 @@
             background: #008cc5;
         }
 
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
         .btn-danger {
             background: #ef4444;
             color: white;
@@ -260,6 +270,12 @@
 
         .btn-danger:hover {
             background: #dc2626;
+        }
+
+        .nav-buttons-flex {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .switch-text {
@@ -400,8 +416,8 @@
                         <div class="ecosystem-tag">Venture capital investors</div>
                     </div>
 
-                    <div style="margin-top: 24px;">
-                        <button class="btn btn-primary" onclick="proceedToAuth()">Proceed to Sign In & Apply</button>
+                    <div class="nav-buttons-flex">
+                        <button class="btn btn-primary" onclick="proceedToAuth()">Next: Sign In & Apply →</button>
                     </div>
                 </div>
             </div>
@@ -429,8 +445,8 @@
                         <div class="switch-text">
                             Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
                         </div>
-                        <div class="switch-text" style="margin-top: 8px;">
-                            <a onclick="backToLanding()">← Back to About Us</a>
+                        <div class="nav-buttons-flex">
+                            <button class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
                         </div>
                     </div>
 
@@ -462,8 +478,8 @@
                         <div class="switch-text">
                             Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
                         </div>
-                        <div class="switch-text" style="margin-top: 8px;">
-                            <a onclick="backToLanding()">← Back to About Us</a>
+                        <div class="nav-buttons-flex">
+                            <button class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
                         </div>
                     </div>
 
@@ -473,6 +489,11 @@
             <!-- MAIN APPLICATION VIEW -->
             <div id="mainAppView" class="main-app-view">
                 
+                <div class="card" style="display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 14px 20px;">
+                    <button class="btn btn-secondary" style="width: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="handleLogout()">← Previous: Sign Out / Switch Account</button>
+                    <span style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">Secure Portal Active</span>
+                </div>
+
                 <div class="card">
                     <h1>Work in Luxembourg 2026</h1>
                     <p class="subtitle">Complete your official verified application form below.</p>
@@ -528,48 +549,48 @@
                             <label>Valid International Passport Status *</label>
                             <select id="applicantPassportStatus" required>
                                 <option value="">Select passport status...</option>
-                           <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
-                            <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
-                            <option value="Expired / Needs renewal">Expired / Needs renewal</option>
-                            <option value="Do not have a passport yet">Do not have a passport yet</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Passport Number (if available)</label>
-                        <input type="text" id="applicantPassportNo" placeholder="Optional">
-                    </div>
+                                <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                                <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                                <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                                <option value="Do not have a passport yet">Do not have a passport yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Number (if available)</label>
+                            <input type="text" id="applicantPassportNo" placeholder="Optional">
+                        </div>
 
-                    <!-- Section 3 -->
-                    <h3 class="section-title">3. JOB POSITION SELECTION</h3>
-                    <div class="form-group">
-                        <label>Select Preferred Position *</label>
-                        <select id="jobCategory" required>
-                            <option value="">Choose from available positions...</option>
-                            <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
-                            <option value="Administrative Assistant">Administrative Assistant</option>
-                            <option value="Bartender">Bartender</option>
-                            <option value="Butcher">Butcher</option>
-                            <option value="Caregiver">Caregiver</option>
-                            <option value="Carpenter">Carpenter</option>
-                            <option value="Cashier">Cashier</option>
-                            <option value="Chef and Cook">Chef and Cook</option>
-                            <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
-                            <option value="Construction Worker">Construction Worker</option>
-                            <option value="Customer Service Representative">Customer Service Representative</option>
-                            <option value="Data Entry Clerk">Data Entry Clerk</option>
-                            <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
-                            <option value="Electrician">Electrician</option>
-                            <option value="Fabricator">Fabricator</option>
-                            <option value="Factory / Production Worker">Factory / Production Worker</option>
-                            <option value="Financial Analyst">Financial Analyst</option>
-                            <option value="Forklift Operator">Forklift Operator</option>
-                            <option value="Gardener">Gardener</option>
-                            <option value="Graphic Designer">Graphic Designer</option>
-                            <option value="Healthcare Assistant">Healthcare Assistant</option>
-                            <option value="Helper">Helper</option>
-                            <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
-                            <option value="Human Resource Assistant">Human Resource Assistant</option>
-                            <option value="IT Support Technician">IT Support Technician</option>
+                        <!-- Section 3 -->
+                        <h3 class="section-title">3. JOB POSITION SELECTION</h3>
+                        <div class="form-group">
+                            <label>Select Preferred Position *</label>
+                            <select id="jobCategory" required>
+                                <option value="">Choose from available positions...</option>
+                                <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+                                <option value="Administrative Assistant">Administrative Assistant</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Butcher">Butcher</option>
+                                <option value="Caregiver">Caregiver</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Chef and Cook">Chef and Cook</option>
+                                <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
+                                <option value="Construction Worker">Construction Worker</option>
+                                <option value="Customer Service Representative">Customer Service Representative</option>
+                                <option value="Data Entry Clerk">Data Entry Clerk</option>
+                                <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Fabricator">Fabricator</option>
+                                <option value="Factory / Production Worker">Factory / Production Worker</option>
+                                <option value="Financial Analyst">Financial Analyst</option>
+                                <option value="Forklift Operator">Forklift Operator</option>
+                                <option value="Gardener">Gardener</option>
+                                <option value="Graphic Designer">Graphic Designer</option>
+                                <option value="Healthcare Assistant">Healthcare Assistant</option>
+                                <option value="Helper">Helper</option>
+                                <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
+                                <option value="Human Resource Assistant">Human Resource Assistant</option>
+                      <option value="IT Support Technician">IT Support Technician</option>
                             <option value="Kitchen Assistant">Kitchen Assistant</option>
                             <option value="Logistics Assistant">Logistics Assistant</option>
                             <option value="Maintenance Worker">Maintenance Worker</option>
@@ -702,10 +723,6 @@
                     <button type="submit" class="btn btn-primary">Submit Job Application</button>
                     <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
                 </form>
-            </div>
-
-            <div class="card" style="text-align: center; background: #f1f5f9;">
-                <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
             </div>
 
         </div>
@@ -927,4 +944,5 @@
         }
     </script>
 </body>
-</html>
+                        </html>
+                        
