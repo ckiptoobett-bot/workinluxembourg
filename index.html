@@ -3,419 +3,945 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official International Recruitment Portal - Luxembourg 2026</title>
-    <!-- EmailJS SDK -->
+    <title>Work in Luxembourg | International Employment Opportunities</title>
+    <!-- EmailJS CDN SDK & Initialization -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY");
+            emailjs.init("Ri1csvaWbZ_wN65gr");
         })();
     </script>
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --accent: #f59e0b;
-            --bg-dark: #0f172a;
-            --text-main: #334155;
-            --border-color: #cbd5e1;
+            --lux-blue: #00A1DE;
+            --lux-red: #ED2939;
+            --dark: #0f172a;
+            --text: #1e293b;
+            --muted: #475569;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #cbd5e1;
+            --footer-bg: #111827;
+            --footer-text: #9ca3af;
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
+
         body {
-            background-color: #f8fafc;
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
             line-height: 1.6;
         }
-        header {
-            background: var(--bg-dark);
-            color: white;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            border-bottom: 4px solid var(--accent);
-        }
-        header h1 {
-            font-size: 1.35rem;
-            margin-bottom: 0.3rem;
-        }
-        header p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
+
         .container {
-            max-width: 600px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
+            width: 100%;
+            max-width: 680px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .card {
-            background: white;
-            padding: 1.5rem;
+
+        /* Site Header Brand */
+        .site-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            padding: 14px 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
-        h2 {
+
+        .brand-logo {
+            font-weight: 700;
             font-size: 1.1rem;
-            color: var(--bg-dark);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo span {
+            color: var(--lux-blue);
+        }
+
+        /* View Controllers */
+        .landing-view {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .auth-view {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .main-app-view {
+            display: none;
+            width: 100%;
+        }
+
+        /* Cards & Content Layout */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            text-align: left;
+        }
+
+        h1 {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        h2.about-heading {
+            color: var(--dark);
+            font-size: 1.25rem;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3.section-title {
+            color: var(--lux-blue);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            padding-bottom: 6px;
             border-bottom: 2px solid #e2e8f0;
         }
-        .form-group {
-            margin-bottom: 1rem;
+
+        p.subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
         }
+
+        .about-text {
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .ecosystem-tag {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            border-left: 3px solid var(--lux-blue);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
         label {
             display: block;
-            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.3rem;
-            color: #475569;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: var(--dark);
         }
+
         input, select, textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            background: #fff;
-        }
-        input:focus, select:focus, textarea:focus {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+            background: #fff;
+            color: var(--text);
         }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--lux-blue);
+            box-shadow: 0 0 0 3px rgba(0, 161, 222, 0.15);
+        }
+
+        .input-with-btn {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-with-btn input {
+            flex: 1;
+        }
+
+        .input-with-btn button {
+            width: auto;
+            padding: 0 16px;
+            white-space: nowrap;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: flex-start;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
+
         .checkbox-group input {
-            width: auto;
-            margin-top: 0.25rem;
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            cursor: pointer;
         }
-        .checkbox-group label {
-            font-weight: normal;
-            font-size: 0.85rem;
-        }
-        button {
+
+        .btn {
             width: 100%;
-            background: var(--primary);
-            color: white;
+            padding: 12px;
             border: none;
-            padding: 0.85rem;
-            font-size: 1rem;
+            border-radius: 8px;
             font-weight: 600;
-            border-radius: 6px;
+            font-size: 1rem;
             cursor: pointer;
             transition: background 0.2s;
         }
-        button:hover {
-            background: var(--primary-dark);
+
+        .btn-primary {
+            background: var(--lux-blue);
+            color: white;
         }
-        .secondary-btn {
-            background: #64748b;
-            margin-top: 0.5rem;
+
+        .btn-primary:hover {
+            background: #008cc5;
         }
-        .secondary-btn:hover {
-            background: #475569;
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--dark);
         }
-        .status-msg {
-            margin-top: 1rem;
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .nav-buttons-flex {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .switch-text {
+            margin-top: 16px;
             font-size: 0.9rem;
-            text-align: center;
-            font-weight: 600;
+            color: var(--muted);
         }
-        footer {
-            background: var(--bg-dark);
-            color: #94a3b8;
-            padding: 2rem 1rem;
-            font-size: 0.8rem;
-            text-align: center;
-        }
-        footer .links {
-            margin-bottom: 1rem;
-        }
-        footer a {
-            color: #cbd5e1;
+
+        .switch-text a {
+            color: var(--lux-blue);
             text-decoration: none;
-            display: inline-block;
-            margin: 0.2rem 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
         }
-        footer a:hover {
+
+        .switch-text a:hover {
             text-decoration: underline;
+        }
+
+        .error-msg {
+            color: var(--lux-red);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .success-msg {
+            color: #10b981;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Professional Footer Style */
+        .site-footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            width: 100%;
+            border-radius: 12px;
+            padding: 30px 24px;
+            margin-top: 30px;
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #374151;
+        }
+
+        .footer-section h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.8rem;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Official International Recruitment Portal</h1>
-        <p>Luxembourg Employment Initiative 2026</p>
-    </header>
-
     <div class="container">
-        <div class="card">
-            <h2>Candidate Job Application Portal</h2>
-            <form id="jobApplicationForm" onsubmit="submitApplication(event)">
-                
-                <div class="form-group">
-                    <label>Full Name (as on Passport) *</label>
-                    <input type="text" id="applicantFullName" required placeholder="Enter your full name">
-                </div>
 
-                <div class="form-group">
-                    <label>Date of Birth *</label>
-                    <input type="date" id="applicantDOB" required>
-                </div>
+        <div>
+            <!-- Header Brand Bar -->
+            <header class="site-header">
+                <div class="brand-logo">Work in <span>Luxembourg</span></div>
+                <div id="headerUserStatus" style="font-size: 0.85rem; font-weight: 600; color: var(--muted);">Official Portal</div>
+            </header>
 
-                <div class="form-group">
-                    <label>Nationality / Country of Residence *</label>
-                    <input type="text" id="applicantNationality" required placeholder="e.g., Kenya">
-                </div>
-
-                <div class="form-group">
-                    <label>WhatsApp / Phone Number *</label>
-                    <input type="tel" id="applicantPhone" required placeholder="+254...">
-                </div>
-
-                <div class="form-group">
-                    <label>Email Address *</label>
-                    <input type="email" id="applicantEmail" required placeholder="name@example.com">
-                </div>
-
-                <div class="form-group" style="background: #f1f5f9; padding: 1rem; border-radius: 6px;">
-                    <label>Email Verification (Required before submitting)</label>
-                    <button type="button" id="sendOtpBtn" onclick="sendOTP()">Send OTP Code to Email</button>
-                    <p id="otpStatus" class="status-msg" style="font-size: 0.8rem;"></p>
-                </div>
-
-                <div id="otpSection" class="form-group" style="display: none; background: #f1f5f9; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
-                    <label>Enter 6-Digit OTP Code *</label>
-                    <input type="text" id="otpInput" maxlength="6" placeholder="123456">
-                    <button type="button" class="secondary-btn" onclick="verifyOTP()">Verify OTP</button>
-                    <p id="otpVerifyStatus" class="status-msg" style="font-size: 0.8rem;"></p>
-                </div>
-
-                <div class="form-group" style="margin-top: 1.5rem;">
-                    <label>Are you 18 years of age or older? *</label>
-                    <select id="applicantAge" required>
-                        <option value="">Select option</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Valid International Passport Status *</label>
-                    <select id="applicantPassportStatus" required>
-                        <option value="">Select option</option>
-                        <option value="Valid Passport Held">Valid Passport Held</option>
-                        <option value="In Process / Renewal">In Process / Renewal</option>
-                        <option value="None">None</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Passport Number (Optional)</label>
-                    <input type="text" id="applicantPassportNo" placeholder="Enter passport number if available">
-                </div>
-
-                <div class="form-group">
-                    <label>Preferred Job Category *</label>
-                    <select id="jobCategory" required>
-                        <option value="">Select Job Category</option>
-                        <option value="Hospitality & Hotel Management">Hospitality & Hotel Management</option>
-                        <option value="Information Technology & Software">Information Technology & Software</option>
-                        <option value="Engineering & Construction">Engineering & Construction</option>
-                        <option value="Healthcare & Nursing">Healthcare & Nursing</option>
-                        <option value="Agriculture & Farming">Agriculture & Farming</option>
-                        <option value="General Labor & Logistics">General Labor & Logistics</option>
-                        <option value="Finance & Administration">Finance & Administration</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Years of Professional Experience *</label>
-                    <select id="applicantExperience" required>
-                        <option value="">Select experience</option>
-                        <option value="Less than 1 year">Less than 1 year</option>
-                        <option value="1 - 3 years">1 - 3 years</option>
-                        <option value="3 - 5 years">3 - 5 years</option>
-                        <option value="5+ years">5+ years</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Highest Level of Education *</label>
-                    <select id="applicantEducation" required>
-                        <option value="">Select education level</option>
-                        <option value="High School Diploma">High School Diploma</option>
-                        <option value="Certificate / Diploma">Certificate / Diploma</option>
-                        <option value="Bachelor's Degree">Bachelor's Degree</option>
-                        <option value="Master's Degree or Higher">Master's Degree or Higher</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Languages Spoken *</label>
-                    <input type="text" id="applicantLanguages" required placeholder="e.g., English, French, German">
-                </div>
-
-                <div class="form-group">
-                    <label>Preferred Employment Contract Type *</label>
-                    <select id="applicantContract" required>
-                        <option value="">Select contract type</option>
-                        <option value="Full-Time Permanent">Full-Time Permanent</option>
-                        <option value="Seasonal / Fixed-Term">Seasonal / Fixed-Term</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Relocation / Travel Timeline *</label>
-                    <select id="applicantTimeline" required>
-                        <option value="">Select availability</option>
-                        <option value="Immediately (Within 30 Days)">Immediately (Within 30 Days)</option>
-                        <option value="Within 1 to 3 Months">Within 1 to 3 Months</option>
-                        <option value="Within 3 to 6 Months">Within 3 to 6 Months</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Professional Summary / Why should we consider you? *</label>
-                    <textarea id="applicantAbout" rows="4" required placeholder="Briefly describe your skills and background..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>How did you hear about us? *</label>
-                    <select id="applicantReferral" required>
-                        <option value="">Select source</option>
-                        <option value="Social Media">Social Media</option>
-                        <option value="Friend / Family Referral">Friend / Family Referral</option>
-                        <option value="Job Search Engine">Job Search Engine</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label style="font-size: 0.95rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--bg-dark);">5. Document Readiness</label>
-                    <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem;">Tick the documents you hold ready:</p>
+            <!-- LANDING / ABOUT US VIEW (FIRST PAGE) -->
+            <div id="landingView" class="landing-view">
+                <div class="card">
+                    <h1>About Work in Luxembourg</h1>
+                    <p class="subtitle">Empowering international professionals with a data-driven path to the Grand Duchy.</p>
                     
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="docCv" checked disabled>
-                        <label for="docCv">Updated Professional CV / Resume</label>
+                    <p class="about-text">
+                        The <strong>Talent to Luxembourg</strong> initiative was born in 2024 from a simple observation by its Founder, <strong>Ruggero Monelli</strong>: many talented candidates approach the Luxembourg job market without truly understanding what makes a professional relationship with an employer succeed.
+                    </p>
+                    <p class="about-text">
+                        Drawing on years of firsthand experience in the Grand Duchy, Ruggero decided to turn that insight into action — extending an open invitation to professionals from abroad to explore career opportunities and relocate to Luxembourg.
+                    </p>
+                    <p class="about-text">
+                        The approach is deliberately <strong>data-driven</strong>, built on an extensive mapping of the Luxembourg ecosystem.
+                    </p>
+
+                    <h2 class="about-heading">🎯 Talent & Recruitment</h2>
+                    <p class="about-text">
+                        • A curated list of around <strong>100 recruiters</strong> based in Luxembourg, complemented by 100 international recruiters based in the UK and beyond.<br>
+                        • A directory of around <strong>1,300 companies</strong> offering jobs in Luxembourg, with ready-to-use links to live job offers, organized across approximately 150 industry sectors.<br>
+                        • The complete annual calendar of job fairs in Luxembourg, including detailed profiles of hundreds of employers from past editions.
+                    </p>
+
+                    <h2 class="about-heading">🌍 Practical Support & Relocation</h2>
+                    <p class="about-text">
+                        • Online tools for CV restructuring, job portals, and a full overview of professional certifications relevant to the local market.<br>
+                        • A directory of training providers offering tailored programmes.<br>
+                        • Relocation guides produced by specialized expat organizations, including real estate companies offering rental services.
+                    </p>
+
+                    <h2 class="about-heading">📈 Industry Ecosystem Mapping</h2>
+                    <div class="ecosystem-grid">
+                        <div class="ecosystem-tag">Financial institutions & Asset management</div>
+                        <div class="ecosystem-tag">Education (including cross-border institutions)</div>
+                        <div class="ecosystem-tag">AI, Blockchain & Cybersecurity</div>
+                        <div class="ecosystem-tag">Health, Research & Real estate</div>
+                        <div class="ecosystem-tag">Legal & European Institutions</div>
+                        <div class="ecosystem-tag">Professional associations & Startup support</div>
+                        <div class="ecosystem-tag">Venture capital investors</div>
                     </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="docPolice" checked disabled>
-                        <label for="docPolice">Certificate of Good Conduct (Police Clearance)</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="docCerts" checked disabled>
-                        <label for="docCerts">Academic / Professional Certificates</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="docPhoto" checked disabled>
-                        <label for="docPhoto">Biometric Passport Photos</label>
+
+                    <div class="nav-buttons-flex">
+                        <button type="button" class="btn btn-primary" onclick="proceedToAuth()">Next: Sign In & Apply →</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Additional Notes or Qualifications</label>
-                    <textarea id="applicantNotes" rows="2" placeholder="Optional notes..."></textarea>
+            <!-- AUTHENTICATION VIEW (SECOND STEP) -->
+            <div id="authView" class="auth-view">
+                <div class="card" style="max-width: 420px; margin: 0 auto;">
+                    
+                    <!-- Sign In Form -->
+                    <div id="signinContainer">
+                        <h1>Welcome Back</h1>
+                        <p class="subtitle">Sign in to access Luxembourg Job Opportunities</p>
+                        <form id="signinForm" onsubmit="handleSignIn(event)">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="signinEmail" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" id="signinPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <div id="signinError" class="error-msg"></div>
+                        </form>
+                        <div class="switch-text">
+                            Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
+                        </div>
+                        <div class="nav-buttons-flex">
+                            <button type="button" class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
+                        </div>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div id="signupContainer" style="display: none;">
+                        <h1>Create Account</h1>
+                        <p class="subtitle">Register to apply for jobs in Luxembourg</p>
+                        <form id="signupForm" onsubmit="handleSignUp(event)">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="signupName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="signupEmail" required placeholder="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" id="signupPassword" required placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" id="signupConfirmPassword" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                            <div id="signupError" class="error-msg"></div>
+                            <div id="signupSuccess" class="success-msg"></div>
+                        </form>
+                        <div class="switch-text">
+                            Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
+                        </div>
+                        <div class="nav-buttons-flex">
+                            <button type="button" class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MAIN APPLICATION VIEW -->
+            <div id="mainAppView" class="main-app-view">
+                
+                <div class="card" style="display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 14px 20px;">
+                    <button type="button" class="btn btn-secondary" style="width: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="handleLogout()">← Previous: Sign Out / Switch Account</button>
+                    <span style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">Secure Portal Active</span>
                 </div>
 
-                <div class="form-group checkbox-group" style="margin-top: 1rem;">
-                    <input type="checkbox" id="declarationCheck" required>
-                    <label for="declarationCheck">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge. *</label>
+                <div class="card">
+                    <h1>Work in Luxembourg 2026</h1>
+                    <p class="subtitle">Complete your application form below.</p>
+
+                    <div style="background: #e0f2fe; border-left: 4px solid var(--lux-blue); padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-size: 0.9rem; color: var(--dark);">
+                        ℹ️ <strong>Note:</strong> Shortlisted candidates will be contacted via our official email <strong>luxemburgjobopportunities2026@gmail.com</strong> within 72 hours from the day of application. Please remember to keep checking your junk/spam folders.
+                    </div>
+                    
+                    <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+                        
+                        <!-- Section 1 -->
+                        <h3 class="section-title">1. PERSONAL INFORMATION</h3>
+                        <div class="form-group">
+                            <label>Full Name (as on Passport) *</label>
+                            <input type="text" id="applicantFullName" required placeholder="e.g. Marie Schneider">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth *</label>
+                            <input type="date" id="applicantDOB" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nationality / Country of Residence *</label>
+                            <input type="text" id="applicantNationality" required placeholder="e.g. Luxembourger / Luxembourg City, Luxembourg">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp / Phone Number (with Country Code) *</label>
+                            <input type="tel" id="applicantPhone" required placeholder="e.g. +352 691 234 567">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address (Verification Required) *</label>
+                            <div class="input-with-btn">
+                                <input type="email" id="applicantEmail" required placeholder="e.g. applicant@email.com">
+                                <button type="button" class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
+                            </div>
+                            <div id="otpStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                        </div>
+                        <div class="form-group" id="otpSection" style="display: none;">
+                            <label>Enter Verification Code (OTP) *</label>
+                            <div class=<input-with-btn">
+                                <input type="text" id="otpInput" placeholder="Enter 6-digit code">
+                                <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
+                            </div>
+                            <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
+                        <div class="form-group">
+                            <label>Are you at least 18 years of age? *</label>
+                            <select id="applicantAge" required>
+                                <option value="">Select confirmation...</option>
+                                <option value="Yes">Yes, I am 18 or older</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Valid International Passport Status *</label>
+                            <select id="applicantPassportStatus" required>
+                                <option value="">Select passport status...</option>
+                                <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                                <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                                <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                                <option value="Do not have a passport yet">Do not have a passport yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Passport Number (if available)</label>
+                            <input type="text" id="applicantPassportNo" placeholder="Optional">
+                        </div>
+
+                        <!-- Section 3 -->
+                        <h3 class="section-title">3. JOB POSITION SELECTION</h3>
+                        <div class="form-group">
+                            <label>Select Preferred Position *</label>
+                            <select id="jobCategory" required>
+                                <option value="">Choose from available positions...</option>
+                                <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+                                <option value="Administrative Assistant">Administrative Assistant</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Butcher">Butcher</option>
+                                <option value="Caregiver">Caregiver</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Chef and Cook">Chef and Cook</option>
+                                <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
+                                <option value="Construction Worker">Construction Worker</option>
+                                <option value="Customer Service Representative">Customer Service Representative</option>
+                                <option value="Data Entry Clerk">Data Entry Clerk</option>
+                                <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Fabricator">Fabricator</option>
+                                <option value="Factory / Production Worker">Factory / Production Worker</option>
+                                <option value="Financial Analyst">Financial Analyst</option>
+                                <option value="Forklift Operator">Forklift Operator</option>
+                                <option value="Gardener">Gardener</option>
+                                <option value="Graphic Designer">Graphic Designer</option>
+                                <option value="Healthcare Assistant">Healthcare Assistant</option>
+                                <option value="Helper">Helper</option>
+                                <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
+                                <option value="Human Resource Assistant">Human Resource Assistant</option>
+                                <option value="IT Support Technician">IT Support Technician</option>
+                                <option value="Kitchen Assistant">Kitchen Assistant</option>
+                                <option value="Logistics Assistant">Logistics Assistant</option>
+                                <option value="Maintenance Worker">Maintenance Worker</option>
+                                <option value="Marketing Specialist">Marketing Specialist</option>
+                                <option value="Mechanical Technician">Mechanical Technician</option>
+                                <option value="Nanny">Nanny</option>
+                                <option value="Office Clerk">Office Clerk</option>
+                                <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
+                                <option value="Painter">Painter</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Project Coordinator">Project Coordinator</option>
+                                <option value="Receptionist">Receptionist</option>
+                                <option value="Registered Nurse">Registered Nurse</option>
+                                <option value="Restaurant Supervisor">Restaurant Supervisor</option>
+                                <option value="Retail Assistant">Retail Assistant</option>
+                                <option value="Sales Representative">Sales Representative</option>
+                                <option value="Security Personnel">Security Personnel</option>
+                                <option value="Software Developer">Software Developer</option>
+                                <option value="Stocker">Stocker</option>
+                                <option value="Store Clerk">Store Clerk</option>
+                                <option value="Teacher / Educator">Teacher / Educator</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Waiter and Waitress">Waiter and Waitress</option>
+                                <option value="Warehouse Worker">Warehouse Worker</option>
+                                <option value="Welder">Welder</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Years of Relevant Experience *</label>
+                            <select id="applicantExperience" required>
+                                <option value="">Select experience level...</option>
+                                <option value="Entry Level / Willing to train">Entry Level / Willing to train</option>
+                                <option value="1 - 2 Years">1 - 2 Years</option>
+                                <option value="3 - 5 Years">3 - 5 Years</option>
+                                <option value="5+ Years">5+ Years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Highest Level of Education *</label>
+                            <select id="applicantEducation" required>
+                                <option value="">Select education level...</option>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's / Ph.D">Master's / Ph.D</option>
+                                <option value="Certificate / Diploma">Certificate / Diploma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Languages Spoken & Proficiency *</label>
+                            <input type="text" id="applicantLanguages" required placeholder="e.g. English (Fluent), French (Basic)">
+                        </div>
+
+                        <!-- Section 4 -->
+                        <h3 class="section-title">4. WORK PREFERENCES & AVAILABILITY</h3>
+                        <div class="form-group">
+                            <label>Preferred Contract Type *</label>
+                            <select id="applicantContract" required>
+                                <option value="">Select preferred contract type...</option>
+                                <option value="Permanent / Long-Term Contract (CDI)">Permanent / Long-Term Contract (CDI)</option>
+                                <option value="Fixed-Term Contract (CDD)">Fixed-Term Contract (CDD)</option>
+                                <option value="Seasonal Contract">Seasonal Contract</option>
+                                <option value="Open to Any Available Contract">Open to Any Available Contract</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Available Relocation Timeline *</label>
+                            <select id="applicantTimeline" required>
+                                <option value="">Select timeline...</option>
+                                <option value="Immediately (Within 30 days)">Immediately (Within 30 days)</option>
+                                <option value="1 to 3 Months">1 to 3 Months</option>
+                                <option value="3 to 6 Months">3 to 6 Months</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Please tell us something about yourself and why we should consider you for shortlisting! *</label>
+                            <textarea id="applicantAbout" required placeholder="Share your key skills, work ethic, and motivation for working in Luxembourg..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>How did you hear about us? *</label>
+                            <select id="applicantReferral" required>
+                                <option value="">Select an option...</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="WhatsApp / Telegram">WhatsApp / Telegram</option>
+                                <option value="Google Search">Google Search</option>
+                                <option value="Friend / Family Referral">Friend / Family Referral</option>
+                                <option value="Job Board / Recruitment Website">Job Board / Recruitment Website</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <h3 class="section-title">5. DOCUMENT READINESS</h3>
+                        <div class="form-group">
+                            <label style="margin-bottom: 10px;">Tick the documents you currently hold ready:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docCV" value="Updated Professional CV / Resume">
+                                <label for="docCV" style="font-weight: normal; margin-bottom: 0;">Updated Professional CV / Resume</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docPoliceClearance" value="Certificate of Good Conduct (Police Clearance)">
+                                <label for="docPoliceClearance" style="font-weight: normal; margin-bottom: 0;">Certificate of Good Conduct (Police Clearance)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docCertificates" value="Academic / Professional Certificates">
+                                <label for="docCertificates" style="font-weight: normal; margin-bottom: 0;">Academic / Professional Certificates</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docPhotos" value="Biometric Passport Photos">
+                                <label for="docPhotos" style="font-weight: normal; margin-bottom: 0;">Biometric Passport Photos</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes or Qualifications</label>
+                            <textarea id="applicantNotes" placeholder="List any extra certifications, driver's license classes, trade licenses, or additional notes (optional)..."></textarea>
+                        </div>
+
+                        <!-- Section 6 -->
+                        <h3 class="section-title">6. DECLARATION & TERMS</h3>
+                        <div class="checkbox-group" style="margin-bottom: 20px;">
+                            <input type="checkbox" id="terms1" required>
+                            <label for="terms1" style="font-weight: normal; margin-bottom: 0;">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge.</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Job Application</button>
+                        <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
+                    </form>
                 </div>
 
-                <button type="submit" id="submitBtn">Submit Job Application</button>
-                <p id="appStatus" class="status-msg"></p>
-            </form>
+            </div>
+
         </div>
+
+        <!-- Professional Footer -->
+        <footer id="siteFooter" class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Useful Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Legal Notice</a></li>
+                        <li><a href="#">General Terms and Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>Email: luxemburgjobopportunities2026@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Official International Recruitment Portal - Luxembourg 2026<br>
+                &copy; 2026 Work in Luxembourg. All rights reserved.
+            </div>
+        </footer>
+
     </div>
 
-    <footer>
-        <div class="links">
-            <a href="#">Legal Notice</a> |
-            <a href="#">General Terms and Conditions</a> |
-            <a href="#">Privacy Policy</a>
-        </div>
-        <p>Email: luxemburgjobopportunities2026@gmail.com</p>
-        <p style="margin-top: 0.5rem;">Official International Recruitment Portal - Luxembourg 2026<br>&copy; 2026 Work in Luxembourg. All rights reserved.</p>
-    </footer>
-
     <script>
+        const API_URL = 'https://luxembourg-backend.onrender.com';
         let generatedOTP = '';
         let isEmailVerified = false;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('lux_user');
+            if (savedUser) {
+                try {
+                    const user = JSON.parse(savedUser);
+                    showMainApp(user.name || user.email || 'User');
+                } catch (e) {
+                    localStorage.removeItem('lux_user');
+                }
+            }
+        });
+
+        function proceedToAuth() {
+            document.getElementById('landingView').style.display = 'none';
+            document.getElementById('authView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'none';
+        }
+
+        function backToLanding() {
+            document.getElementById('authView').style.display = 'none';
+            document.getElementById('landingView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'block';
+        }
+
+        function toggleAuthMode(mode) {
+            const signinContainer = document.getElementById('signinContainer');
+            const signupContainer = document.getElementById('signupContainer');
+            
+            document.getElementById('signinError').innerText = '';
+            document.getElementById('signupError').innerText = '';
+            document.getElementById('signupSuccess').innerText = '';
+
+            if (mode === 'signup') {
+                signinContainer.style.display = 'none';
+                signupContainer.style.display = 'block';
+            } else {
+                signupContainer.style.display = 'none';
+                signinContainer.style.display = 'block';
+            }
+        }
+
+        async function handleSignUp(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const errEl = document.getElementById('signupError');
+            const succEl = document.getElementById('signupSuccess');
+
+            errEl.innerText = '';
+            succEl.innerText = '';
+
+            if (password !== confirmPassword) {
+                errEl.innerText = 'Passwords do not match. Please check again.';
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/api/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    succEl.innerText = 'Registration successful! Redirecting to sign in...';
+                    setTimeout(() => {
+                        toggleAuthMode('signin');
+                        document.getElementById('signinEmail').value = email;
+                        succEl.innerText = '';
+                    }, 1500);
+                } else {
+                    errEl.innerText = data.error || data.message || 'Registration failed.';
+                }
+            } catch (err) {
+                errEl.innerText = 'Network error connecting to backend.';
+            }
+        }
+
+        async function handleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('signinEmail').value.trim();
+            const password = document.getElementById('signinPassword').value;
+            const errEl = document.getElementById('signinError');
+
+            errEl.innerText = '';
+
+            try {
+                const res = await fetch(`${API_URL}/api/signin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = aconst data = await res.json();
+
+                if (res.ok) {
+                    const userData = data.user || { name: email };
+                    localStorage.setItem('lux_user', JSON.stringify(userData));
+                    showMainApp(userData.name || email);
+                } else {
+                    errEl.innerText = data.error || data.message || 'Invalid credentials.';
+                }
+            } catch (err) {
+                errEl.innerText = 'Network error connecting to backend.';
+            }
+        }
+
+        function showMainApp(name) {
+            document.getElementById('landingView').style.display = 'none';
+            document.getElementById('authView').style.display = 'none';
+            document.getElementById('mainAppView').style.display = 'block';
+            document.getElementById('siteFooter').style.display = 'block';
+            document.getElementById('headerUserStatus').innerText = `Welcome, ${name}`;
+            document.getElementById('applicantFullName').value = name;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('lux_user');
+            document.getElementById('mainAppView').style.display = 'none';
+            document.getElementById('landingView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'block';
+            document.getElementById('headerUserStatus').innerText = 'Official Portal';
+            document.getElementById('signinForm').reset();
+            document.getElementById('signupForm').reset();
+            toggleAuthMode('signin');
+        }
 
         function sendOTP() {
             const email = document.getElementById('applicantEmail').value.trim();
             const statusEl = document.getElementById('otpStatus');
-
             if (!email) {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Please enter a valid email address first.';
+                statusEl.innerText = 'Please enter an email address first.';
                 return;
             }
-
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
             statusEl.style.color = '#3b82f6';
-            statusEl.innerText = 'Sending OTP code...';
-
-            const templateParams = {
+            statusEl.innerText = 'Sending OTP to your email...';
+            document.getElementById('otpSection').style.display = 'block';
+            
+            emailjs.send("service_luxembourg", "template_2dxcj6g", {
                 email: email,
                 passcode: generatedOTP
-            };
-
-            emailjs.send("service_luxembourg", "template_2dxcj6g", templateParams)
-                .then(() => {
-                    statusEl.style.color = '#10b981';
-                    statusEl.innerText = 'OTP sent successfully! Check your inbox.';
-                    document.getElementById('otpSection').style.display = 'block';
-                })
-                .catch(err => {
-                    statusEl.style.color = '#ef4444';
-                    statusEl.innerText = 'Failed to send OTP. Please try again.';
-                    console.error('OTP Error:', err);
-                });
+            }).then(() => {
+                statusEl.style.color = '#10b981';
+                statusEl.innerText = 'OTP sent successfully! Check your inbox.';
+            }).catch(err => {
+                statusEl.style.color = '#ef4444';
+                statusEl.innerText = 'Error: ' + (err.text || JSON.stringify(err));
+                console.error('EmailJS Error:', err);
+            });
         }
 
         function verifyOTP() {
-            const userInput = document.getElementById('otpInput').value.trim();
+            const enteredOTP = document.getElementById('otpInput').value.trim();
             const verifyStatusEl = document.getElementById('otpVerifyStatus');
-
-            if (userInput === generatedOTP) {
+            if (enteredOTP === generatedOTP) {
                 isEmailVerified = true;
                 verifyStatusEl.style.color = '#10b981';
                 verifyStatusEl.innerText = 'Email verified successfully!';
-                document.getElementById('sendOtpBtn').disabled = true;
-                document.getElementById('otpInput').disabled = true;
             } else {
                 isEmailVerified = false;
                 verifyStatusEl.style.color = '#ef4444';
                 verifyStatusEl.innerText = 'Invalid OTP code. Please try again.';
             }
         }
-            function submitApplication(e) {
+
+        async function submitApplication(e) {
             e.preventDefault();
             const statusEl = document.getElementById('appStatus');
             
             if (!isEmailVerified) {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Please verify your email with OTP before submitting.';
+                statusEl.innerText = 'Please verify your email with OTP.';
                 return;
             }
 
             statusEl.style.color = '#3b82f6';
             statusEl.innerText = 'Submitting your application...';
 
-            const templateParams = {
+            const formData = {
                 fullName: document.getElementById('applicantFullName').value.trim(),
                 dob: document.getElementById('applicantDOB').value,
                 nationality: document.getElementById('applicantNationality').value.trim(),
@@ -423,7 +949,7 @@
                 email: document.getElementById('applicantEmail').value.trim(),
                 ageConfirmed: document.getElementById('applicantAge').value,
                 passportStatus: document.getElementById('applicantPassportStatus').value,
-                passportNo: document.getElementById('applicantPassportNo').value.trim() || 'N/A',
+                passportNo: document.getElementById('applicantPassportNo').value.trim(),
                 jobCategory: document.getElementById('jobCategory').value,
                 experience: document.getElementById('applicantExperience').value,
                 education: document.getElementById('applicantEducation').value,
@@ -432,24 +958,34 @@
                 timeline: document.getElementById('applicantTimeline').value,
                 about: document.getElementById('applicantAbout').value.trim(),
                 referral: document.getElementById('applicantReferral').value,
-                notes: document.getElementById('applicantNotes').value.trim() || 'None'
+                notes: document.getElementById('applicantNotes').value.trim()
             };
 
-            emailjs.send("service_luxembourg", "template_n3jlpyu", templateParams)
-            .then(() => {
-                statusEl.style.color = '#10b981';
-                statusEl.innerText = 'Application submitted successfully! We will contact you within 72 hours.';
-                document.getElementById('jobApplicationForm').reset();
-                isEmailVerified = false;
-                document.getElementById('otpSection').style.display = 'none';
-                document.getElementById('otpStatus').innerText = '';
-                document.getElementById('otpVerifyStatus').innerText = '';
-            })
-            .catch(err => {
+            try {
+                const res = await fetch(`${API_URL}/api/submit-application`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    statusEl.style.color = '#10b981';
+                    statusEl.innerText = 'Application submitted successfully! We will contact you within 72 hours.';
+                    document.getElementById('jobApplicationForm').reset();
+                    isEmailVerified = false;
+                    document.getElementById('otpSection').style.display = 'none';
+                    document.getElementById('otpStatus').innerText = '';
+                    document.getElementById('otpVerifyStatus').innerText = '';
+                } else {
+                    statusEl.style.color = '#ef4444';
+                    statusEl.innerText = data.error || 'Submission failed. Please try again.';
+                }
+            } catch (err) {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Error submitting application: ' + (err.text || JSON.stringify(err));
-                console.error('EmailJS Submission Error:', err);
-            });
+                statusEl.innerText = 'Network error connecting to backend.';
+                console.error('Submission Error:', err);
+            }
         }
     </script>
 </body>
