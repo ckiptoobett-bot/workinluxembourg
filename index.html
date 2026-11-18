@@ -39,6 +39,10 @@
         .container {
             width: 100%;
             max-width: 640px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* View Controller */
@@ -47,7 +51,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 85vh;
+            min-height: 75vh;
             text-align: center;
         }
 
@@ -227,13 +231,21 @@
             margin-top: 8px;
             text-align: center;
         }
+
+        .footer-copyright {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
 
-        <!-- AUTHENTICATION VIEW (First Screen) -->
+        <!-- AUTHENTICATION VIEW (First Screen - Sign In / Sign Up) -->
         <div id="authView" class="auth-view">
             <div class="card" style="max-width: 420px; margin: 0 auto;">
                 
@@ -288,6 +300,12 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Copyright visible on Auth screen -->
+            <div class="footer-copyright">
+                Official International Recruitment Portal - Luxembourg 2026<br>
+                &copy; 2026 Work in Luxembourg. All rights reserved.
             </div>
         </div>
 
@@ -489,6 +507,12 @@
             <!-- Bottom Sign Out Card -->
             <div class="card" style="text-align: center; background: #f1f5f9;">
                 <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
+            </div>
+
+            <!-- Copyright visible on Main Application screen -->
+            <div class="footer-copyright">
+                Official International Recruitment Portal - Luxembourg 2026<br>
+                &copy; 2026 Work in Luxembourg. All rights reserved.
             </div>
 
         </div>
