@@ -30,10 +30,151 @@
       color: var(--text);
       padding: 16px;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
       line-height: 1.6;
+    }
+
+    /* Auth Header Bar */
+    .auth-header {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card);
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-auth {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+
+    .btn-signin {
+      background: transparent;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-signin:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-signup {
+      background: var(--lux-blue);
+      color: #fff;
+    }
+
+    .btn-signup:hover {
+      background: #0284c7;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .btn-signout {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-signout:hover {
+      background: #fecaca;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: var(--card);
+      width: 90%;
+      max-width: 400px;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .modal-alert {
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .modal-alert.error {
+      background: #fee2e2;
+      color: #991b1b;
+      display: block;
+    }
+
+    .modal-alert.success {
+      background: #dcfce7;
+      color: #166534;
+      display: block;
     }
 
     .container {
@@ -185,6 +326,7 @@
     input[type="text"],
     input[type="tel"],
     input[type="email"],
+    input[type="password"],
     input[type="date"],
     select,
     textarea {
@@ -222,18 +364,6 @@
     }
 
     .checkbox-item {
-            <div class="highlight-box">
-        <strong>Key Benefits & Package Details:</strong>
-        <ul style="margin-bottom: 0;">
-          <li>Visa sponsorship available</li>
-          <li>Employment contract provided</li>
-          <li>Work permit assistance</li>
-          <li>Accommodation sponsored</li>
-          <li>Air ticket sponsored</li>
-          <li>Relocation assistance</li>
-          <li>No previous European experience required</li>
-        </ul>
-      </div>
       display: flex;
       align-items: flex-start;
       gap: 10px;
@@ -353,7 +483,7 @@
       line-height: 1.5;
     }
 
-    button[type="submit"] {
+    button[type="submit"], .modal-submit {
       width: 100%;
       padding: 16px;
       background-color: var(--lux-blue);
@@ -367,11 +497,11 @@
       transition: background-color 0.2s;
     }
 
-    button[type="submit"]:hover {
+    button[type="submit"]:hover, .modal-submit:hover {
       background-color: #0284c7;
     }
 
-    button[type="submit"]:disabled {
+    button[type="submit"]:disabled, .modal-submit:disabled {
       background-color: #94a3b8;
       cursor: not-allowed;
     }
@@ -415,6 +545,59 @@
   </style>
 </head>
 <body>
+
+<!-- Auth Header Bar -->
+<div class="auth-header" id="authHeader">
+  <div id="authStatusText">Secure Portal Access</div>
+  <div class="auth-buttons" id="authButtonsContainer">
+    <button class="btn-auth btn-signin" id="openSigninBtn">Sign In</button>
+    <button class="btn-auth btn-signup" id="openSignupBtn">Sign Up</button>
+  </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal-card">
+    <button class="modal-close" id="closeSignupModal">&times;</button>
+    <div class="modal-title">Create Account</div>
+    <div id="signupAlert" class="modal-alert"></div>
+    <form id="signupForm" style="padding: 0;">
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label>Full Name</label>
+        <input type="text" id="suName" required placeholder="e.g. Marie Schneider">
+      </div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label>Email Address</label>
+        <input type="email" id="suEmail" required placeholder="applicant@email.com">
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label>Password</label>
+        <input type="password" id="suPassword" required placeholder="At least 6 characters">
+      </div>
+      <button type="submit" class="modal-submit" id="suSubmitBtn" style="margin-top: 0;">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!-- Sign In Modal -->
+<div class="modal-overlay" id="signinModal">
+  <div class="modal-card">
+    <button class="modal-close" id="closeSigninModal">&times;</button>
+    <div class="modal-title">Sign In to Your Account</div>
+    <div id="signinAlert" class="modal-alert"></div>
+    <form id="signinForm" style="padding: 0;">
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label>Email Address</label>
+        <input type="email" id="siEmail" required placeholder="applicant@email.com">
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label>Password</label>
+        <input type="password" id="siPassword" required placeholder="Your password">
+      </div>
+      <button type="submit" class="modal-submit" id="siSubmitBtn" style="margin-top: 0;">Sign In</button>
+    </form>
+  </div>
+</div>
 
 <div class="container">
   <div class="card">
@@ -537,8 +720,7 @@
           <option value="Administrative Assistant">Administrative Assistant</option>
           <option value="Bartender">Bartender</option>
           <option value="Butcher">Butcher</option>
-          <option value="Caregiver">Caregiver</option>
-          <option value="Carpenter">Carpenter</option>
+          <option value="Caregiver">Caregiver<option value="Carpenter">Carpenter</option>
           <option value="Cashier">Cashier</option>
           <option value="Chef">Chef and Cook</option>
           <option value="Cleaner">Cleaning Staff / Cleaner</option>
@@ -613,7 +795,7 @@
         <input type="text" id="languages" name="Languages" required placeholder="e.g. English (Fluent), French (Basic)">
       </div>
 
-      <!-- SECTION 4: WORK PREFERENCES & AVAILABILITY -->
+      <!-- SECTION 4: WORK PREFERENCE & AVAILABILITY -->
       <div class="section-title">4. Work Preferences & Availability</div>
 
       <div class="form-group">
@@ -621,7 +803,7 @@
         <select id="contractType" name="Preferred_Contract_Type" required>
           <option value="" disabled selected>Select preferred contract type...</option>
           <option value="Permanent / Indefinite (CDI)">Permanent / Long-Term Contract (CDI)</option>
-                    <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
+          <option value="Fixed-Term Contract (CDD - 1 to 2 Years)">Fixed-Term Contract (CDD – 1 to 2 Years)</option>
           <option value="Seasonal / Project-Based">Seasonal / Project-Based Contract</option>
           <option value="Flexible / Open to Any">Flexible / Open to Employer Offer</option>
         </select>
@@ -731,8 +913,37 @@
 </div>
 
 <script>
-  // Check if already submitted on this device
+  // BACKEND API URL
+  const BACKEND_URL = 'https://luxembourg-backend.onrender.com';
+
+  // Auth UI Logic
+  const openSigninBtn = document.getElementById('openSigninBtn');
+  const openSignupBtn = document.getElementById('openSignupBtn');
+  const signinModal = document.getElementById('signinModal');
+  const signupModal = document.getElementById('signupModal');
+  const closeSigninModal = document.getElementById('closeSigninModal');
+  const closeSignupModal = document.getElementById('closeSignupModal');
+
+  openSigninBtn.addEventListener('click', () => signinModal.classList.add('active'));
+  openSignupBtn.addEventListener('click', () => signupModal.classList.add('active'));
+  closeSigninModal.addEventListener('click', () => signinModal.classList.remove('active'));
+  closeSignupModal.addEventListener('click', () => signupModal.classList.remove('active'));
+
+  // Check auth state on load
   window.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('lux_token');
+    const user = JSON.parse(localStorage.getItem('lux_user') || 'null');
+
+    if (token && user) {
+      updateAuthHeader(user);
+      if (user.fullName) {
+        document.getElementById('fullName').value = user.fullName;
+      }
+      if (user.email) {
+        document.getElementById('email').value = user.email;
+      }
+    }
+
     if (localStorage.getItem('lux_application_submitted') === 'true') {
       const formElement = document.getElementById('luxForm');
       formElement.innerHTML = `
@@ -741,6 +952,88 @@
           You have already submitted your application for approval. Each applicant is allowed only one submission per device. Please check your email inbox or spam folder for updates regarding your review status.
         </div>
       `;
+    }
+  });
+
+  function updateAuthHeader(user) {
+    const authHeader = document.getElementById('authHeader');
+    authHeader.innerHTML = `
+      <div class="user-info">👤 Welcome, ${user.fullName}</div>
+      <button class="btn-signout" id="signOutBtn">Sign Out</button>
+    `;
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      localStorage.removeItem('lux_token');
+      localStorage.removeItem('lux_user');
+      window.location.reload();
+    });
+  }
+
+  // Sign Up Handler
+  document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById('suName').value.trim();
+    const email = document.getElementById('suEmail').value.trim();
+    const password = document.getElementById('suPassword').value.trim();
+    const alertBox = document.getElementById('signupAlert');
+    const btn = document.getElementById('suSubmitBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Creating Account...';
+    alertBox.className = 'modal-alert';
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Sign up failed');
+
+      localStorage.setItem('lux_token', data.token);
+      localStorage.setItem('lux_user', JSON.stringify(data.user));
+      alertBox.className = 'modal-alert success';
+      alertBox.textContent = 'Account created successfully!';
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (err) {
+      alertBox.className = 'modal-alert error';
+      alertBox.textContent = err.message;
+      btn.disabled = false;
+      btn.textContent = 'Sign Up';
+    }
+  });
+
+  // Sign In Handler
+  document.getElementById('signinForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('siEmail').value.trim();
+    const password = document.getElementById('siPassword').value.trim();
+    const alertBox = document.getElementById('signinAlert');
+    const btn = document.getElementById('siSubmitBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Signing In...';
+    alertBox.className = 'modal-alert';
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Sign in failed');
+
+      localStorage.setItem('lux_token', data.token);
+      localStorage.setItem('lux_user', JSON.stringify(data.user));
+      alertBox.className = 'modal-alert success';
+      alertBox.textContent = 'Signed in successfully!';
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (err) {
+      alertBox.className = 'modal-alert error';
+      alertBox.textContent = err.message;
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
     }
   });
 
@@ -839,7 +1132,7 @@
       return;
     }
 
-    submitBtn.disabled = true;
+    submitBtn.disablsubmitBtn.disabled = true;
     submitBtn.textContent = 'Submitting Application...';
     formAlert.className = 'alert';
     formAlert.style.display = 'none';
