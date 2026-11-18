@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work in Luxembourg | International Employment Opportunities</title>
-    <!-- EmailJS CDN SDK -->
+    <!-- EmailJS CDN SDK & Initialization -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS Public Key from Account settings
+        })();
+    </script>
     <style>
         :root {
             --lux-blue: #00A1DE;
@@ -457,8 +462,7 @@
                             <option value="">Select education level...</option>
                             <option value="High School">High School</option>
                             <option value="Bachelor's Degree">Bachelor's Degree</option>
-                            <option value="Master's / Ph.D">Master's / Ph.D</option>
-                            <option value="Certificate / Diploma">Certificate / Diploma</option>
+                            <option value="Master's / Ph.D">Master's                             <option value="Certificate / Diploma">Certificate / Diploma</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -646,16 +650,22 @@
                 return;
             }
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            statusEl.style.color = '#10b981';
-            statusEl.innerText = 'OTP sent successfully! (Check inbox)';
+            statusEl.style.color = '#3b82f6';
+            statusEl.innerText = 'Sending OTP to your email...';
             document.getElementById('otpSection').style.display = 'block';
             
-            if (typeof emailjs !== 'undefined') {
-                emailjs.send("service_default", "template_default", {
-                    to_email: email,
-                    otp_code: generatedOTP
-                }).catch(err => console.log('EmailJS dispatch note:', err));
-            }
+            // Send live email via EmailJS using your service and template IDs
+            emailjs.send("service_luxembourg", "template_2dxcj6g", {
+                to_email: email,
+                otp_code: generatedOTP
+            }).then(() => {
+                statusEl.style.color = '#10b981';
+                statusEl.innerText = 'OTP sent successfully! Check your inbox.';
+            }).catch(err => {
+                statusEl.style.color = '#ef4444';
+                statusEl.innerText = 'Failed to send email. Check Public Key or template variables.';
+                console.error('EmailJS Error:', err);
+            });
         }
 
         function verifyOTP() {
@@ -692,4 +702,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
