@@ -727,7 +727,7 @@
         </div>
 
         <!-- Professional Footer -->
-        <footer class="site-footer">
+        <footer id="siteFooter" class="site-footer">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Useful Links</h4>
@@ -772,11 +772,13 @@
         function proceedToAuth() {
             document.getElementById('landingView').style.display = 'none';
             document.getElementById('authView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'none';
         }
 
         function backToLanding() {
             document.getElementById('authView').style.display = 'none';
             document.getElementById('landingView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'block';
         }
 
         function toggleAuthMode(mode) {
@@ -868,14 +870,15 @@
             document.getElementById('landingView').style.display = 'none';
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
-            document.getElementById('headerUserStatus').innerText = `Welcome, ${name}`;
-            document.getElementById('applicantFullName').value = name;
+            document.getElementById('siteFooter').style.display = 'block';
+            document.getElementBId('applicantFullName').value = name;
         }
 
         function handleLogout() {
             localStorage.removeItem('lux_user');
             document.getElementById('mainAppView').style.display = 'none';
             document.getElementById('landingView').style.display = 'flex';
+            document.getElementById('siteFooter').style.display = 'block';
             document.getElementById('headerUserStatus').innerText = 'Official Portal';
             document.getElementById('signinForm').reset();
             document.getElementById('signupForm').reset();
