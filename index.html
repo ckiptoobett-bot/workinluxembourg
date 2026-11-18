@@ -234,7 +234,6 @@
             color: #10b981;
             font-size: 0.85rem;
             margin-top: 8px;
-            text-align: center;
         }
 
         .footer-copyright {
@@ -250,7 +249,7 @@
 
     <div class="container">
 
-        <!-- AUTHENTICATION VIEW (First Screen - Sign In / Sign Up) -->
+        <!-- AUTHENTICATION VIEW -->
         <div id="authView" class="auth-view">
             <div class="card" style="max-width: 420px; margin: 0 auto;">
                 
@@ -307,17 +306,15 @@
 
             </div>
 
-            <!-- Copyright visible on Auth screen -->
             <div class="footer-copyright">
                 Official International Recruitment Portal - Luxembourg 2026<br>
                 &copy; 2026 Work in Luxembourg. All rights reserved.
             </div>
         </div>
 
-        <!-- MAIN APPLICATION VIEW (Second Screen - Unlocks after Login) -->
+        <!-- MAIN APPLICATION VIEW -->
         <div id="mainAppView" class="main-app-view">
             
-            <!-- Top Welcome Banner -->
             <div class="top-bar">
                 <span class="user-greeting" id="userGreeting">Welcome, User</span>
             </div>
@@ -509,12 +506,10 @@
                 </form>
             </div>
 
-            <!-- Bottom Sign Out Card -->
             <div class="card" style="text-align: center; background: #f1f5f9;">
                 <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
             </div>
 
-            <!-- Copyright visible on Main Application screen -->
             <div class="footer-copyright">
                 Official International Recruitment Portal - Luxembourg 2026<br>
                 &copy; 2026 Work in Luxembourg. All rights reserved.
@@ -529,7 +524,6 @@
         let generatedOTP = '';
         let isEmailVerified = false;
 
-        // Check active session on load
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('lux_user');
             if (savedUser) {
@@ -655,7 +649,6 @@
             statusEl.innerText = 'Sending OTP to your email...';
             document.getElementById('otpSection').style.display = 'block';
             
-            // Send live email via EmailJS matching your template parameters
             emailjs.send("service_luxembourg", "template_2dxcj6g", {
                 email: email,
                 passcode: generatedOTP
@@ -664,7 +657,7 @@
                 statusEl.innerText = 'OTP sent successfully! Check your inbox.';
             }).catch(err => {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Failed to send email. Check console for details.';
+                statusEl.innerText = 'Error: ' + (err.text || JSON.stringify(err));
                 console.error('EmailJS Error:', err);
             });
         }
@@ -703,5 +696,4 @@
         }
     </script>
 </body>
-                        </html>
-                        
+</html>
