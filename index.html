@@ -300,25 +300,37 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('lux_user');
             if (savedUser) {
-                const user = JSON.parse(savedUser);
-                showMainApp(user.name);
+                try {
+                    const user = JSON.parse(savedUser);
+                    showMainApp(user.name || user.email || 'User');
+                } catch (e) {
+                    localStorage.removeItem('lux_user');
+                }
             }
         });
 
         function toggleAuthMode(mode) {
+            const signinContainer = document.getElementById('signinContainer');
+            const signupContainer = document.getElementById('signupContainer');
+            
+            // Reset error or success text on toggle
+            document.getElementById('signinError').innerText = '';
+            document.getElementById('signupError').innerText = '';
+            document.getElementById('signupSuccess').innerText = '';
+
             if (mode === 'signup') {
-                document.getElementById('signinContainer').style.display = 'none';
-                document.getElementById('signupContainer').style.display = 'block';
+                signinContainer.style.display = 'none';
+                signupContainer.style.display = 'block';
             } else {
-                document.getElementById('signupContainer').style.display = 'none';
-                document.getElementById('signinContainer').style.display = 'block';
+                signupContainer.style.display = 'none';
+                signinContainer.style.display = 'block';
             }
         }
 
         async function handleSignUp(e) {
             e.preventDefault();
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
             const password = document.getElementById('signupPassword').value;
             const errEl = document.getElementById('signupError');
             const succEl = document.getElementById('signupSuccess');
@@ -335,8 +347,11 @@
                 const data = await res.json();
 
                 if (res.ok) {
-                    succEl.innerText = 'Registration successful! You can now sign in.';
-                    setTimeout(() => toggleAuthMode('signin'), 1500);
+                    succEl.innerText = 'Registration successful! Redirecting to sign in...';
+                    setTimeout(() => {
+                        toggleAuthMode('signin');
+                        document.getElementById('signinEmail').value = email;
+                    }, 1200);
                 } else {
                     errEl.innerText = data.message || 'Registration failed.';
                 }
@@ -347,7 +362,7 @@
 
         async function handleSignIn(e) {
             e.preventDefault();
-            const email = document.getElementById('signinEmail').value;
+            const email = document.getElementById('signinEmail').value.trim();
             const password = document.getElementById('signinPassword').value;
             const errEl = document.getElementById('signinError');
 
@@ -362,8 +377,9 @@
                 const data = await res.json();
 
                 if (res.ok) {
-                    localStorage.setItem('lux_user', JSON.stringify(data.user || { name: email }));
-                    showMainApp(data.user ? data.user.name : email);
+                    const userData = data.user || { name: email };
+                    localStorage.setItem('lux_user', JSON.stringify(userData));
+                    showMainApp(userData.name || email);
                 } else {
                     errEl.innerText = data.message || 'Invalid credentials.';
                 }
@@ -382,6 +398,9 @@
             localStorage.removeItem('lux_user');
             document.getElementById('mainAppView').style.display = 'none';
             document.getElementById('authView').style.display = 'flex';
+            document.getElementById('signinForm').reset();
+            document.getElementById('signupForm').reset();
+            toggleAuthMode('signin');
         }
 
         function submitApplication(e) {
@@ -393,5 +412,4 @@
         }
     </script>
 </body>
-                          </html>
-                          
+</html>
