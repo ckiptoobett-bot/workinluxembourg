@@ -388,8 +388,8 @@
                     <div class="form-group">
                         <label>Passport Number (if available)</label>
                         <input type="text" id="applicantPassportNo" placeholder="Optional">
-                            </div>
-                                                <!-- Section 3 -->
+                    </div>
+                                        <!-- Section 3 -->
                     <h3 class="section-title">3. JOB POSITION SELECTION</h3>
                     <div class="form-group">
                         <label>Select Preferred Position *</label>
@@ -513,7 +513,33 @@
                     </div>
 
                     <!-- Section 5 -->
-                    <h3 class="section-title">5. DECLARATION & TERMS</h3>
+                    <h3 class="section-title">5. DOCUMENT READINESS</h3>
+                    <div class="form-group">
+                        <label style="margin-bottom: 10px;">Tick the documents you currently hold ready:</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="docCV" value="Updated Professional CV / Resume">
+                            <label for="docCV" style="font-weight: normal; margin-bottom: 0;">Updated Professional CV / Resume</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="docPoliceClearance" value="Certificate of Good Conduct (Police Clearance)">
+                            <label for="docPoliceClearance" style="font-weight: normal; margin-bottom: 0;">Certificate of Good Conduct (Police Clearance)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="docCertificates" value="Academic / Professional Certificates">
+                            <label for="docCertificates" style="font-weight: normal; margin-bottom: 0;">Academic / Professional Certificates</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="docPhotos" value="Biometric Passport Photos">
+                            <label for="docPhotos" style="font-weight: normal; margin-bottom: 0;">Biometric Passport Photos</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Notes or Qualifications</label>
+                        <textarea id="applicantNotes" placeholder="List any extra certifications, driver's license classes, trade licenses, or additional notes (optional)..."></textarea>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <h3 class="section-title">6. DECLARATION & TERMS</h3>
                     <div class="checkbox-group">
                         <input type="checkbox" id="terms1" required>
                         <label for="terms1" style="font-weight: normal; margin-bottom: 0;">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge.</label>
@@ -709,7 +735,7 @@
             }
 
             statusEl.style.color = '#10b981';
-            statusEl.innerText = 'Application submitted successfully!';
+            statusEl.innerText = 'Application submitted successfull!`;
             document.getElementById('jobApplicationForm').reset();
             isEmailVerified = false;
             document.getElementById('otpSection').style.display = 'none';
