@@ -74,6 +74,14 @@
             margin-bottom: 8px;
         }
 
+        h3.section-title {
+            color: var(--lux-blue);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
         p.subtitle {
             color: var(--muted);
             font-size: 0.95rem;
@@ -106,6 +114,22 @@
         input:focus, select:focus, textarea:focus {
             border-color: var(--lux-blue);
             box-shadow: 0 0 0 3px rgba(0, 161, 222, 0.15);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            cursor: pointer;
         }
 
         .btn {
@@ -263,23 +287,51 @@
 
             <div class="card">
                 <h1>Work in Luxembourg 2026</h1>
-                <p class="subtitle">Complete your verified application form below.</p>
+                <p class="subtitle">Complete your official verified application form below.</p>
                 
                 <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+                    
+                    <!-- Section 1 -->
+                    <h3 class="section-title">1. APPLICANT DETAILS</h3>
                     <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="applicantFullName" required placeholder="Enter your full name">
+                        <label>Nationality / Country of Residence *</label>
+                        <input type="text" id="applicantNationality" required placeholder="e.g. Kenyan / Nairobi, Kenya">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp / Phone Number (with Country Code) *</label>
+                        <input type="tel" id="applicantPhone" required placeholder="e.g. +254 712 345 678">
                     </div>
 
+                    <!-- Section 2 -->
+                    <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
                     <div class="form-group">
-                        <label>Current Country / Nationality</label>
-                        <input type="text" id="applicantNationality" required placeholder="e.g. Kenya, Uganda, etc.">
+                        <label>Are you at least 18 years of age? *</label>
+                        <select id="applicantAge" required>
+                            <option value="">Select confirmation...</option>
+                            <option value="Yes">Yes, I am 18 or older</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Valid International Passport Status *</label>
+                        <select id="applicantPassportStatus" required>
+                            <option value="">Select passport status...</option>
+                            <option value="Valid Passport">Valid Passport Ready</option>
+                            <option value="In Progress">Renewal / In Progress</option>
+                            <option value="None">None</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Passport Number (if available)</label>
+                        <input type="text" id="applicantPassportNo" placeholder="Optional">
                     </div>
 
+                    <!-- Section 3 -->
+                    <h3 class="section-title">3. JOB POSITION SELECTION</h3>
                     <div class="form-group">
-                        <label>Select Job Category</label>
+                        <label>Select Preferred Position *</label>
                         <select id="jobCategory" required>
-                            <option value="">-- Choose Category --</option>
+                            <option value="">Choose from available positions...</option>
                             <option value="Information Technology">Information Technology</option>
                             <option value="Finance & Banking">Finance & Banking</option>
                             <option value="Engineering">Engineering</option>
@@ -288,28 +340,63 @@
                             <option value="General Labor">General Labor</option>
                         </select>
                     </div>
-
                     <div class="form-group">
-                        <label>Years of Professional Experience</label>
+                        <label>Years of Relevant Experience *</label>
                         <select id="applicantExperience" required>
-                            <option value="">-- Select Experience --</option>
+                            <option value="">Select experience level...</option>
                             <option value="0-1 Years">0-1 Years</option>
                             <option value="2-4 Years">2-4 Years</option>
                             <option value="5+ Years">5+ Years</option>
                         </select>
                     </div>
-
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="applicantPhone" required placeholder="+352 ...">
+                        <label>Highest Level of Education *</label>
+                        <select id="applicantEducation" required>
+                            <option value="">Select education level...</option>
+                            <option value="High School">High School</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's / Ph.D">Master's / Ph.D</option>
+                            <option value="Certificate / Diploma">Certificate / Diploma</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Languages Spoken & Proficiency *</label>
+                        <input type="text" id="applicantLanguages" required placeholder="e.g. English (Fluent), French (Basic)">
                     </div>
 
+                    <!-- Section 4 -->
+                    <h3 class="section-title">4. WORK PREFERENCES & AVAILABILITY</h3>
                     <div class="form-group">
-                        <label>Cover Letter / Summary</label>
-                        <textarea id="applicantCover" rows="4" required placeholder="Tell us why you are a great fit..."></textarea>
+                        <label>Preferred Contract Type *</label>
+                        <select id="applicantContract" required>
+                            <option value="">Select preferred contract type...</option>
+                            <option value="Full-Time Permanent">Full-Time Permanent</option>
+                            <option value="Seasonal Contract">Seasonal Contract</option>
+                            <option value="Open / Any">Open / Any</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Available Relocation Timeline *</label>
+                        <select id="applicantTimeline" required>
+                            <option value="">Select timeline...</option>
+                            <option value="Immediately">Immediately</option>
+                            <option value="Within 1 to 3 Months">Within 1 to 3 Months</option>
+                            <option value="Within 3 to 6 Months">Within 3 to 6 Months</option>
+                        </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                    <!-- Section 5 -->
+                    <h3 class="section-title">5. DECLARATION & TERMS</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms1" required>
+                        <label for="terms1" style="font-weight: normal; margin-bottom: 0;">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge.</label>
+                    </div>
+                    <div class="checkbox-group" style="margin-bottom: 20px;">
+                        <input type="checkbox" id="terms2" required>
+                        <label for="terms2" style="font-weight: normal; margin-bottom: 0;">I understand that shortlisted candidates will be notified within 72 hours and will be required to complete the assessment process (€50 fee).</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Job Application</button>
                     <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
                 </form>
             </div>
@@ -422,8 +509,6 @@
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
             document.getElementById('userGreeting').innerText = `Welcome, ${name}`;
-            // Pre-fill full name field if available
-            document.getElementById('applicantFullName').value = name !== 'User' ? name : '';
         }
 
         function handleLogout() {
@@ -444,5 +529,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>
