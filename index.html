@@ -250,6 +250,7 @@
             color: #10b981;
             font-size: 0.85rem;
             margin-top: 8px;
+            text-align: center;
         }
 
         /* Professional Footer Style matching reference */
@@ -491,7 +492,7 @@
                                 <option value="Restaurant Supervisor">Restaurant Supervisor</option>
                                 <option value="Retail Assistant">Retail Assistant</option>
                                 <option value="Sales Representative">Sales Representative</option>
-                                <option value="Security Personnel">Security Personnel</option>
+  <option value="Security Personnel">Security Personnel</option>
                             <option value="Software Developer">Software Developer</option>
                             <option value="Stocker">Stocker</option>
                             <option value="Store Clerk">Store Clerk</option>
@@ -702,10 +703,12 @@
                 const data = await res.json();
 
                 if (res.ok) {
-                    succEl.innerText = 'Registration successful! Redirecting...';
-                    alert('Registration successful! Please sign in.');
-                    toggleAuthMode('signin');
-                    document.getElementById('signinEmail').value = email;
+                    succEl.innerText = 'Registration successful! Redirecting to sign in...';
+                    setTimeout(() => {
+                        toggleAuthMode('signin');
+                        document.getElementById('signinEmail').value = email;
+                        succEl.innerText = '';
+                    }, 1500);
                 } else {
                     errEl.innerText = data.error || data.message || 'Registration failed.';
                 }
@@ -819,5 +822,4 @@
         }
     </script>
 </body>
-                                </html>
-                                
+</html>
