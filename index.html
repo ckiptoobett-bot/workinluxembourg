@@ -383,8 +383,8 @@
                     <div class="form-group">
                         <label>Passport Number (if available)</label>
                         <input type="text" id="applicantPassportNo" placeholder="Optional">
-                    </div>
-                                        <!-- Section 3 -->
+                        </div>
+                                            <!-- Section 3 -->
                     <h3 class="section-title">3. JOB POSITION SELECTION</h3>
                     <div class="form-group">
                         <label>Select Preferred Position *</label>
@@ -648,7 +648,7 @@
             statusEl.innerText = 'Sending OTP to your email...';
             document.getElementById('otpSection').style.display = 'block';
             
-            emailjs.send("service_luxembourg", "wc3bg9x", {
+            emailjs.send("service_luxembourg", "template_2dxcj6g", {
                 email: email,
                 passcode: generatedOTP
             }).then(() => {
@@ -695,5 +695,5 @@
         }
     </script>
 </body>
-    </html>
-    
+                        </html>
+                        
