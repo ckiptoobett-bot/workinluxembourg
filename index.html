@@ -772,15 +772,31 @@
         });
 
         function proceedToAuth() {
-            document.getElementById('landingView').style.display = 'none';
-            document.getElementById('authView').style.display = 'flex';
-            document.getElementById('siteFooter').style.display = 'none';
+            const landing = document.getElementById('landingView');
+            const auth = document.getElementById('authView');
+            const mainApp = document.getElementById('mainAppView');
+            const footer = document.getElementById('siteFooter');
+
+            if (landing) landing.style.display = 'none';
+            if (auth) auth.style.display = 'flex';
+            if (mainApp) mainApp.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function backToLanding() {
-            document.getElementById('authView').style.display = 'none';
-            document.getElementById('landingView').style.display = 'flex';
-            document.getElementById('siteFooter').style.display = 'block';
+            const landing = document.getElementById('landingView');
+            const auth = document.getElementById('authView');
+            const mainApp = document.getElementById('mainAppView');
+            const footer = document.getElementById('siteFooter');
+
+            if (auth) auth.style.display = 'none';
+            if (landing) landing.style.display = 'flex';
+            if (mainApp) mainApp.style.display = 'none';
+            if (footer) footer.style.display = 'block';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleAuthMode(mode) {
@@ -836,7 +852,7 @@
                     errEl.innerText = data.error || data.message || 'Registration failed.';
                 }
             } catch (err) {
-                errEl.innerText = 'Network error connecting to backend.';
+                errEl.innerText = 'Network error connecting to backend';
             }
         }
 
@@ -854,7 +870,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
                 });
-                const data = aconst data = await res.json();
+                const data = await res.json();
 
                 if (res.ok) {
                     const userData = data.user || { name: email };
