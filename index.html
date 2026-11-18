@@ -417,9 +417,10 @@
                         <label>Preferred Contract Type *</label>
                         <select id="applicantContract" required>
                             <option value="">Select preferred contract type...</option>
-                            <option value="Full-Time Permanent">Full-Time Permanent</option>
+                            <option value="Permanent / Long-Term Contract (CDI)">Permanent / Long-Term Contract (CDI)</option>
+                            <option value="Fixed-Term Contract (CDD)">Fixed-Term Contract (CDD)</option>
                             <option value="Seasonal Contract">Seasonal Contract</option>
-                            <option value="Open / Any">Open / Any</option>
+                            <option value="Open to Any Available Contract">Open to Any Available Contract</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -446,7 +447,9 @@
                     <button type="submit" class="btn btn-primary">Submit Job Application</button>
                     <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
                 </form>
-              <!-- Bottom Sign Out Card -->
+            </div>
+
+            <!-- Bottom Sign Out Card -->
             <div class="card" style="text-align: center; background: #f1f5f9;">
                 <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
             </div>
