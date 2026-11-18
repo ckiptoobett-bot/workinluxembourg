@@ -120,6 +120,11 @@
             color: var(--text);
         }
 
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
         input:focus, select:focus, textarea:focus {
             border-color: var(--lux-blue);
             box-shadow: 0 0 0 3px rgba(0, 161, 222, 0.15);
@@ -383,8 +388,8 @@
                     <div class="form-group">
                         <label>Passport Number (if available)</label>
                         <input type="text" id="applicantPassportNo" placeholder="Optional">
-                        </div>
-                                            <!-- Section 3 -->
+                            </div>
+                                                <!-- Section 3 -->
                     <h3 class="section-title">3. JOB POSITION SELECTION</h3>
                     <div class="form-group">
                         <label>Select Preferred Position *</label>
@@ -486,6 +491,24 @@
                             <option value="Immediately (Within 30 days)">Immediately (Within 30 days)</option>
                             <option value="1 to 3 Months">1 to 3 Months</option>
                             <option value="3 to 6 Months">3 to 6 Months</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Please tell us something about yourself and why we should consider you for shortlisting! *</label>
+                        <textarea id="applicantAbout" required placeholder="Share your key skills, work ethic, and motivation for working in Luxembourg..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us? *</label>
+                        <select id="applicantReferral" required>
+                            <option value="">Select an option...</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="WhatsApp / Telegram">WhatsApp / Telegram</option>
+                            <option value="Google Search">Google Search</option>
+                            <option value="Friend / Family Referral">Friend / Family Referral</option>
+                            <option value="Job Board / Recruitment Website">Job Board / Recruitment Website</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 
@@ -695,5 +718,4 @@
         }
     </script>
 </body>
-                        </html>
-                        
+</html>
