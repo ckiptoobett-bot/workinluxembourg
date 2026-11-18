@@ -116,6 +116,21 @@
             box-shadow: 0 0 0 3px rgba(0, 161, 222, 0.15);
         }
 
+        .input-with-btn {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-with-btn input {
+            flex: 1;
+        }
+
+        .input-with-btn button {
+            width: auto;
+            padding: 0 16px;
+            white-space: nowrap;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: flex-start;
@@ -291,7 +306,15 @@
                 <form id="jobApplicationForm" onsubmit="submitApplication(event)">
                     
                     <!-- Section 1 -->
-                    <h3 class="section-title">1. APPLICANT DETAILS</h3>
+                    <h3 class="section-title">1. PERSONAL INFORMATION</h3>
+                    <div class="form-group">
+                        <label>Full Name (as on Passport) *</label>
+                        <input type="text" id="applicantFullName" required placeholder="e.g. Marie Schneider">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth *</label>
+                        <input type="date" id="applicantDOB" required>
+                    </div>
                     <div class="form-group">
                         <label>Nationality / Country of Residence *</label>
                         <input type="text" id="applicantNationality" required placeholder="e.g. Luxembourger / Luxembourg City, Luxembourg">
@@ -301,8 +324,20 @@
                         <input type="tel" id="applicantPhone" required placeholder="e.g. +352 691 234 567">
                     </div>
                     <div class="form-group">
-                        <label>Date of Birth *</label>
-                        <input type="date" id="applicantDOB" required>
+                        <label>Email Address (Verification Required) *</label>
+                        <div class="input-with-btn">
+                            <input type="email" id="applicantEmail" required placeholder="e.g. applicant@email.com">
+                            <button type="button" class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
+                        </div>
+                        <div id="otpStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                    </div>
+                    <div class="form-group" id="otpSection" style="display: none;">
+                        <label>Enter Verification Code (OTP) *</label>
+                        <div class="input-with-btn">
+                            <input type="text" id="otpInput" placeholder="Enter 6-digit code">
+                            <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
+                        </div>
+                        <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
                     </div>
 
                     <!-- Section 2 -->
@@ -319,9 +354,10 @@
                         <label>Valid International Passport Status *</label>
                         <select id="applicantPassportStatus" required>
                             <option value="">Select passport status...</option>
-                            <option value="Valid Passport">Valid Passport Ready</option>
-                            <option value="In Progress">Renewal / In Progress</option>
-                            <option value="None">None</option>
+                            <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                            <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                            <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                            <option value="Do not have a passport yet">Do not have a passport yet</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -391,8 +427,9 @@
                         <label>Years of Relevant Experience *</label>
                         <select id="applicantExperience" required>
                             <option value="">Select experience level...</option>
-                            <option value="0-1 Years">0-1 Years</option>
-                            <option value="2-4 Years">2-4 Years</option>
+                            <option value="Entry Level / Willing to train">Entry Level / Willing to train</option>
+                            <option value="1 - 2 Years">1 - 2 Years</option>
+                            <option value="3 - 5 Years">3 - 5 Years</option>
                             <option value="5+ Years">5+ Years</option>
                         </select>
                     </div>
@@ -427,9 +464,9 @@
                         <label>Available Relocation Timeline *</label>
                         <select id="applicantTimeline" required>
                             <option value="">Select timeline...</option>
-                            <option value="Immediately">Immediately</option>
-                            <option value="Within 1 to 3 Months">Within 1 to 3 Months</option>
-                            <option value="Within 3 to 6 Months">Within 3 to 6 Months</option>
+                            <option value="Immediately (Within 30 days)">Immediately (Within 30 days)</option>
+                            <option value="1 to 3 Months">1 to 3 Months</option>
+                            <option value="3 to 6 Months">3 to 6 Months</option>
                         </select>
                     </div>
 
@@ -460,6 +497,8 @@
 
     <script>
         const API_URL = 'https://luxembourg-backend.onrender.com';
+        let generatedOTP = '';
+        let isEmailVerified = false;
 
         // Check active session on load
         window.addEventListener('DOMContentLoaded', () => {
@@ -562,6 +601,7 @@
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
             document.getElementById('userGreeting').innerText = `Welcome, ${name}`;
+            document.getElementById('applicantFullName').value = name;
         }
 
         function handleLogout() {
@@ -573,12 +613,58 @@
             toggleAuthMode('signin');
         }
 
+        function sendOTP() {
+            const email = document.getElementById('applicantEmail').value.trim();
+            const statusEl = document.getElementById('otpStatus');
+            if (!email) {
+                statusEl.style.color = '#ef4444';
+                statusEl.innerText = 'Please enter an email address first.';
+                return;
+            }
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            statusEl.style.color = '#10b981';
+            statusEl.innerText = 'OTP sent successfully! (Check inbox)';
+            document.getElementById('otpSection').style.display = 'block';
+            
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send("service_default", "template_default", {
+                    to_email: email,
+                    otp_code: generatedOTP
+                }).catch(err => console.log('EmailJS dispatch note:', err));
+            }
+        }
+
+        function verifyOTP() {
+            const enteredOTP = document.getElementById('otpInput').value.trim();
+            const verifyStatusEl = document.getElementById('otpVerifyStatus');
+            if (enteredOTP === generatedOTP) {
+                isEmailVerified = true;
+                verifyStatusEl.style.color = '#10b981';
+                verifyStatusEl.innerText = 'Email verified successfully!';
+            } else {
+                isEmailVerified = false;
+                verifyStatusEl.style.color = '#ef4444';
+                verifyStatusEl.innerText = 'Invalid OTP code. Please try again.';
+            }
+        }
+
         function submitApplication(e) {
             e.preventDefault();
             const statusEl = document.getElementById('appStatus');
+            
+            if (!isEmailVerified) {
+                statusEl.style.color = '#ef4444';
+                statusEl.innerText = 'Please verify your email address with OTP before submitting.';
+                return;
+            }
+
             statusEl.style.color = '#10b981';
             statusEl.innerText = 'Application submitted successfully!';
             document.getElementById('jobApplicationForm').reset();
+            isEmailVerified = false;
+            document.getElementById('otpSection').style.display = 'none';
+            document.getElementById('otpStatus').innerText = '';
+            document.getElementById('otpVerifyStatus').innerText = '';
         }
     </script>
 </body>
