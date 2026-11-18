@@ -416,7 +416,7 @@
                     </div>
 
                     <div style="background: #e0f2fe; border-left: 4px solid var(--lux-blue); padding: 12px 16px; border-radius: 6px; margin: 20px 0; font-size: 0.9rem; color: var(--dark);">
-                        ℹ️ <strong>Note:</strong> Shortlisted candidates will be contacted via our official email <strong>luxemburgjobopportunities2026@gmail.com</strong> within 72 hours from the day of application.
+                        ℹ️ <strong>Note:</strong> Shortlisted candidates will be contacted via our official email <strong>luxemburgjobopportunities2026@gmail.com</strong> within 72 hours from the day of application. Please remember to keep checking your junk/spam folders.
                     </div>
 
                     <div class="nav-buttons-flex">
@@ -531,201 +531,203 @@
                         </div>
                         <div class="form-group" id="otpSection" style="display: none;">
                             <label>Enter Verification Code (OTP) *</label>
-                            <div class="input-with-btn">
-                          <input type="text" id="otpInput" placeholder="Enter 6-digit code">
-                            <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
+                          <div class="input-with-btn">
+                                <input type="text" id="otpInput" placeholder="Enter 6-digit code">
+                                <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
+                            </div>
+                            <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
                         </div>
-                        <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
-                    </div>
 
-                    <!-- Section 2 -->
-                    <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
-                    <div class="form-group">
-                        <label>Are you at least 18 years of age? *</label>
-                        <select id="applicantAge" required>
-                            <option value="">Select confirmation...</option>
-                            <option value="Yes">Yes, I am 18 or older</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Valid International Passport Status *</label>
-                        <select id="applicantPassportStatus" required>
-                            <option value="">Select passport status...</option>
-                            <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
-                            <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
-                            <option value="Expired / Needs renewal">Expired / Needs renewal</option>
-                            <option value="Do not have a passport yet">Do not have a passport yet</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Passport Number (if available)</label>
-                        <input type="text" id="applicantPassportNo" placeholder="Optional">
-                    </div>
-
-                    <!-- Section 3 -->
-                    <h3 class="section-title">3. JOB POSITION SELECTION</h3>
-                    <div class="form-group">
-                        <label>Select Preferred Position *</label>
-                        <select id="jobCategory" required>
-                            <option value="">Choose from available positions...</option>
-                            <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
-                            <option value="Administrative Assistant">Administrative Assistant</option>
-                            <option value="Bartender">Bartender</option>
-                            <option value="Butcher">Butcher</option>
-                            <option value="Caregiver">Caregiver</option>
-                            <option value="Carpenter">Carpenter</option>
-                            <option value="Cashier">Cashier</option>
-                            <option value="Chef and Cook">Chef and Cook</option>
-                            <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
-                            <option value="Construction Worker">Construction Worker</option>
-                            <option value="Customer Service Representative">Customer Service Representative</option>
-                            <option value="Data Entry Clerk">Data Entry Clerk</option>
-                            <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
-                            <option value="Electrician">Electrician</option>
-                            <option value="Fabricator">Fabricator</option>
-                            <option value="Factory / Production Worker">Factory / Production Worker</option>
-                            <option value="Financial Analyst">Financial Analyst</option>
-                            <option value="Forklift Operator">Forklift Operator</option>
-                            <option value="Gardener">Gardener</option>
-                            <option value="Graphic Designer">Graphic Designer</option>
-                            <option value="Healthcare Assistant">Healthcare Assistant</option>
-                            <option value="Helper">Helper</option>
-                            <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
-                            <option value="Human Resource Assistant">Human Resource Assistant</option>
-                            <option value="IT Support Technician">IT Support Technician</option>
-                            <option value="Kitchen Assistant">Kitchen Assistant</option>
-                            <option value="Logistics Assistant">Logistics Assistant</option>
-                            <option value="Maintenance Worker">Maintenance Worker</option>
-                            <option value="Marketing Specialist">Marketing Specialist</option>
-                            <option value="Mechanical Technician">Mechanical Technician</option>
-                            <option value="Nanny">Nanny</option>
-                            <option value="Office Clerk">Office Clerk</option>
-                            <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
-                            <option value="Painter">Painter</option>
-                            <option value="Plumber">Plumber</option>
-                            <option value="Project Coordinator">Project Coordinator</option>
-                            <option value="Receptionist">Receptionist</option>
-                            <option value="Registered Nurse">Registered Nurse</option>
-                            <option value="Restaurant Supervisor">Restaurant Supervisor</option>
-                            <option value="Retail Assistant">Retail Assistant</option>
-                            <option value="Sales Representative">Sales Representative</option>
-                            <option value="Security Personnel">Security Personnel</option>
-                            <option value="Software Developer">Software Developer</option>
-                            <option value="Stocker">Stocker</option>
-                            <option value="Store Clerk">Store Clerk</option>
-                            <option value="Teacher / Educator">Teacher / Educator</option>
-                            <option value="Technician">Technician</option>
-                            <option value="Waiter and Waitress">Waiter and Waitress</option>
-                            <option value="Warehouse Worker">Warehouse Worker</option>
-                            <option value="Welder">Welder</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Years of Relevant Experience *</label>
-                        <select id="applicantExperience" required>
-                            <option value="">Select experience level...</option>
-                            <option value="Entry Level / Willing to train">Entry Level / Willing to train</option>
-                            <option value="1 - 2 Years">1 - 2 Years</option>
-                            <option value="3 - 5 Years">3 - 5 Years</option>
-                            <option value="5+ Years">5+ Years</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Highest Level of Education *</label>
-                        <select id="applicantEducation" required>
-                            <option value="">Select education level...</option>
-                            <option value="High School">High School</option>
-                            <option value="Bachelor's Degree">Bachelor's Degree</option>
-                            <option value="Master's / Ph.D">Master's / Ph.D</option>
-                            <option value="Certificate / Diploma">Certificate / Diploma</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Languages Spoken & Proficiency *</label>
-                        <input type="text" id="applicantLanguages" required placeholder="e.g. English (Fluent), French (Basic)">
-                    </div>
-
-                    <!-- Section 4 -->
-                    <h3 class="section-title">4. WORK PREFERENCES & AVAILABILITY</h3>
-                    <div class="form-group">
-                        <label>Preferred Contract Type *</label>
-                        <select id="applicantContract" required>
-                            <option value="">Select preferred contract type...</option>
-                            <option value="Permanent / Long-Term Contract (CDI)">Permanent / Long-Term Contract (CDI)</option>
-                            <option value="Fixed-Term Contract (CDD)">Fixed-Term Contract (CDD)</option>
-                            <option value="Seasonal Contract">Seasonal Contract</option>
-                            <option value="Open to Any Available Contract">Open to Any Available Contract</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Available Relocation Timeline *</label>
-                        <select id="applicantTimeline" required>
-                            <option value="">Select timeline...</option>
-                            <option value="Immediately (Within 30 days)">Immediately (Within 30 days)</option>
-                            <option value="1 to 3 Months">1 to 3 Months</option>
-                            <option value="3 to 6 Months">3 to 6 Months</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Please tell us something about yourself and why we should consider you for shortlisting! *</label>
-                        <textarea id="applicantAbout" required placeholder="Share your key skills, work ethic, and motivation for working in Luxembourg..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>How did you hear about us? *</label>
-                        <select id="applicantReferral" required>
-                            <option value="">Select an option...</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="TikTok">TikTok</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="WhatsApp / Telegram">WhatsApp / Telegram</option>
-                            <option value="Google Search">Google Search</option>
-                            <option value="Friend / Family Referral">Friend / Family Referral</option>
-                            <option value="Job Board / Recruitment Website">Job Board / Recruitment Website</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <!-- Section 5 -->
-                    <h3 class="section-title">5. DOCUMENT READINESS</h3>
-                    <div class="form-group">
-                        <label style="margin-bottom: 10px;">Tick the documents you currently hold ready:</label>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="docCV" value="Updated Professional CV / Resume">
-                            <label for="docCV" style="font-weight: normal; margin-bottom: 0;">Updated Professional CV / Resume</label>
+                        <!-- Section 2 -->
+                        <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
+                        <div class="form-group">
+                            <label>Are you at least 18 years of age? *</label>
+                            <select id="applicantAge" required>
+                                <option value="">Select confirmation...</option>
+                                <option value="Yes">Yes, I am 18 or older</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="docPoliceClearance" value="Certificate of Good Conduct (Police Clearance)">
-                            <label for="docPoliceClearance" style="font-weight: normal; margin-bottom: 0;">Certificate of Good Conduct (Police Clearance)</label>
+                        <div class="form-group">
+                            <label>Valid International Passport Status *</label>
+                            <select id="applicantPassportStatus" required>
+                                <option value="">Select passport status...</option>
+                                <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                                <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                                <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                                <option value="Do not have a passport yet">Do not have a passport yet</option>
+                            </select>
                         </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="docCertificates" value="Academic / Professional Certificates">
-                            <label for="docCertificates" style="font-weight: normal; margin-bottom: 0;">Academic / Professional Certificates</label>
+                        <div class="form-group">
+                            <label>Passport Number (if available)</label>
+                            <input type="text" id="applicantPassportNo" placeholder="Optional">
                         </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="docPhotos" value="Biometric Passport Photos">
-                            <label for="docPhotos" style="font-weight: normal; margin-bottom: 0;">Biometric Passport Photos</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Additional Notes or Qualifications</label>
-                        <textarea id="applicantNotes" placeholder="List any extra certifications, driver's license classes, trade licenses, or additional notes (optional)..."></textarea>
-                    </div>
 
-                    <!-- Section 6 -->
-                    <h3 class="section-title">6. DECLARATION & TERMS</h3>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="terms1" required>
-                        <label for="terms1" style="font-weight: normal; margin-bottom: 0;">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge.</label>
-                    </div>
-                    <div class="checkbox-group" style="margin-bottom: 20px;">
-                        <input type="checkbox" id="terms2" required>
-                        <label for="terms2" style="font-weight: normal; margin-bottom: 0;">I understand that shortlisted candidates will be contacted via our official email (luxemburgjobopportunities2026@gmail.com) within 72 hours from the day of application and will be required to complete the assessment process (€50 fee).</label>
-                    </div>
+                        <!-- Section 3 -->
+                        <h3 class="section-title">3. JOB POSITION SELECTION</h3>
+                        <div class="form-group">
+                            <label>Select Preferred Position *</label>
+                            <select id="jobCategory" required>
+                                <option value="">Choose from available positions...</option>
+                                <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+                                <option value="Administrative Assistant">Administrative Assistant</option>
+                                <option value="Bartender">Bartender</option>
+                                <option value="Butcher">Butcher</option>
+                                <option value="Caregiver">Caregiver</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Chef and Cook">Chef and Cook</option>
+                                <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
+                                <option value="Construction Worker">Construction Worker</option>
+                                <option value="Customer Service Representative">Customer Service Representative</option>
+                                <option value="Data Entry Clerk">Data Entry Clerk</option>
+                                <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Fabricator">Fabricator</option>
+                                <option value="Factory / Production Worker">Factory / Production Worker</option>
+                                <option value="Financial Analyst">Financial Analyst</option>
+                                <option value="Forklift Operator">Forklift Operator</option>
+                                <option value="Gardener">Gardener</option>
+                                <option value="Graphic Designer">Graphic Designer</option>
+                                <option value="Healthcare Assistant">Healthcare Assistant</option>
+                                <option value="Helper">Helper</option>
+                                <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
+                                <option value="Human Resource Assistant">Human Resource Assistant</option>
+                                <option value="IT Support Technician">IT Support Technician</option>
+                                <option value="Kitchen Assistant">Kitchen Assistant</option>
+                                <option value="Logistics Assistant">Logistics Assistant</option>
+                                <option value="Maintenance Worker">Maintenance Worker</option>
+                                <option value="Marketing Specialist">Marketing Specialist</option>
+                                <option value="Mechanical Technician">Mechanical Technician</option>
+                                <option value="Nanny">Nanny</option>
+                                <option value="Office Clerk">Office Clerk</option>
+                                <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
+                                <option value="Painter">Painter</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Project Coordinator">Project Coordinator</option>
+                                <option value="Receptionist">Receptionist</option>
+                                <option value="Registered Nurse">Registered Nurse</option>
+                                <option value="Restaurant Supervisor">Restaurant Supervisor</option>
+                                <option value="Retail Assistant">Retail Assistant</option>
+                                <option value="Sales Representative">Sales Representative</option>
+                                <option value="Security Personnel">Security Personnel</option>
+                                <option value="Software Developer">Software Developer</option>
+                                <option value="Stocker">Stocker</option>
+                                <option value="Store Clerk">Store Clerk</option>
+                                <option value="Teacher / Educator">Teacher / Educator</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Waiter and Waitress">Waiter and Waitress</option>
+                                <option value="Warehouse Worker">Warehouse Worker</option>
+                                <option value="Welder">Welder</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Years of Relevant Experience *</label>
+                            <select id="applicantExperience" required>
+                                <option value="">Select experience level...</option>
+                                <option value="Entry Level / Willing to train">Entry Level / Willing to train</option>
+                                <option value="1 - 2 Years">1 - 2 Years</option>
+                                <option value="3 - 5 Years">3 - 5 Years</option>
+                                <option value="5+ Years">5+ Years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Highest Level of Education *</label>
+                            <select id="applicantEducation" required>
+                                <option value="">Select education level...</option>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's / Ph.D">Master's / Ph.D</option>
+                                <option value="Certificate / Diploma">Certificate / Diploma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Languages Spoken & Proficiency *</label>
+                            <input type="text" id="applicantLanguages" required placeholder="e.g. English (Fluent), French (Basic)">
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Job Application</button>
-                    <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
-                </form>
+                        <!-- Section 4 -->
+                        <h3 class="section-title">4. WORK PREFERENCES & AVAILABILITY</h3>
+                        <div class="form-group">
+                            <label>Preferred Contract Type *</label>
+                            <select id="applicantContract" required>
+                                <option value="">Select preferred contract type...</option>
+                                <option value="Permanent / Long-Term Contract (CDI)">Permanent / Long-Term Contract (CDI)</option>
+                                <option value="Fixed-Term Contract (CDD)">Fixed-Term Contract (CDD)</option>
+                                <option value="Seasonal Contract">Seasonal Contract</option>
+                                <option value="Open to Any Available Contract">Open to Any Available Contract</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Available Relocation Timeline *</label>
+                            <select id="applicantTimeline" required>
+                                <option value="">Select timeline...</option>
+                                <option value="Immediately (Within 30 days)">Immediately (Within 30 days)</option>
+                                <option value="1 to 3 Months">1 to 3 Months</option>
+                                <option value="3 to 6 Months">3 to 6 Months</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Please tell us something about yourself and why we should consider you for shortlisting! *</label>
+                            <textarea id="applicantAbout" required placeholder="Share your key skills, work ethic, and motivation for working in Luxembourg..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>How did you hear about us? *</label>
+                            <select id="applicantReferral" required>
+                                <option value="">Select an option...</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="WhatsApp / Telegram">WhatsApp / Telegram</option>
+                                <option value="Google Search">Google Search</option>
+                                <option value="Friend / Family Referral">Friend / Family Referral</option>
+                                <option value="Job Board / Recruitment Website">Job Board / Recruitment Website</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <h3 class="section-title">5. DOCUMENT READINESS</h3>
+                        <div class="form-group">
+                            <label style="margin-bottom: 10px;">Tick the documents you currently hold ready:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docCV" value="Updated Professional CV / Resume">
+                                <label for="docCV" style="font-weight: normal; margin-bottom: 0;">Updated Professional CV / Resume</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docPoliceClearance" value="Certificate of Good Conduct (Police Clearance)">
+                                <label for="docPoliceClearance" style="font-weight: normal; margin-bottom: 0;">Certificate of Good Conduct (Police Clearance)</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docCertificates" value="Academic / Professional Certificates">
+                                <label for="docCertificates" style="font-weight: normal; margin-bottom: 0;">Academic / Professional Certificates</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="docPhotos" value="Biometric Passport Photos">
+                                <label for="docPhotos" style="font-weight: normal; margin-bottom: 0;">Biometric Passport Photos</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes or Qualifications</label>
+                            <textarea id="applicantNotes" placeholder="List any extra certifications, driver's license classes, trade licenses, or additional notes (optional)..."></textarea>
+                        </div>
+
+                        <!-- Section 6 -->
+                        <h3 class="section-title">6. DECLARATION & TERMS</h3>
+                        <div class="checkbox-group" style="margin-bottom: 20px;">
+                            <input type="checkbox" id="terms1" required>
+                            <label for="terms1" style="font-weight: normal; margin-bottom: 0;">I confirm that all information provided in this application is true, accurate, and complete to the best of my knowledge.</label>
+                        </div>
+
+                        <div style="background: #e0f2fe; border-left: 4px solid var(--lux-blue); padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-size: 0.9rem; color: var(--dark);">
+                            ℹ️ <strong>Note:</strong> Shortlisted candidates will be contacted via our official email <strong>luxemburgjobopportunities2026@gmail.com</strong> within 72 hours from the day of application. Please remember to keep checking your junk/spam folders.
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Job Application</button>
+                        <div id="appStatus" style="margin-top: 10px; text-align: center; font-size: 0.9rem;"></div>
+                    </form>
+                </div>
+
             </div>
 
         </div>
@@ -863,7 +865,7 @@
                     localStorage.setItem('lux_user', JSON.stringify(userData));
                     showMainApp(userData.name || email);
                 } else {
-                    errEl.innerText = data.error | data.message || 'Invalid credentials.';
+                    errEl.innerText = data.error || data.message || 'Invalid credentials.';
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
