@@ -155,9 +155,8 @@
         .btn-danger {
             background: #ef4444;
             color: white;
-            width: auto;
-            padding: 6px 14px;
-            font-size: 0.85rem;
+            padding: 12px;
+            font-size: 1rem;
         }
 
         .btn-danger:hover {
@@ -179,18 +178,6 @@
 
         .switch-text a:hover {
             text-decoration: underline;
-        }
-
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-            background: var(--card);
-            padding: 12px 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
         }
 
         .user-greeting {
@@ -280,11 +267,6 @@
         <!-- MAIN APPLICATION VIEW (Second Screen - Unlocks after Login) -->
         <div id="mainAppView" class="main-app-view">
             
-            <div class="top-bar">
-                <span class="user-greeting" id="userGreeting">Welcome, User</span>
-                <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
-            </div>
-
             <div class="card">
                 <h1>Work in Luxembourg 2026</h1>
                 <p class="subtitle">Complete your official verified application form below.</p>
@@ -445,12 +427,20 @@
                 </form>
             </div>
 
+            <!-- Bottom Sign Out / Account Section -->
+            <div class="card" style="text-align: center; background: #f1f5f9;">
+                <p class="user-greeting" id="userGreeting" style="margin-bottom: 12px; font-size: 1rem;">Welcome, User</p>
+                <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
+            </div>
+
         </div>
 
     </div>
 
     <script>
-        const API_URL = 'https://luxembourg-backend.onrender.com';        // Check active session on load
+        const API_URL = 'https://luxembourg-backend.onrender.com';
+
+        // Check active session on load
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('lux_user');
             if (savedUser) {
