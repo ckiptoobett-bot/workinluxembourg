@@ -531,7 +531,7 @@
                         </div>
                         <div class="form-group" id="otpSection" style="display: none;">
                             <label>Enter Verification Code (OTP) *</label>
-                            <div class=input-with-btn">
+                            <div class=="input-with-btn">
                                 <input type="text" id="otpInput" placeholder="Enter 6-digit code">
                                 <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
                             </div>
@@ -928,7 +928,7 @@
             }
         }
 
-        function submitApplication(e) {
+        async function submitApplication(e) {
             e.preventDefault();
             const statusEl = document.getElementById('appStatus');
             
@@ -938,13 +938,54 @@
                 return;
             }
 
-            statusEl.style.color = '#10b981';
-            statusEl.innerText = 'Application submitted successfully!';
-            document.getElementById('jobApplicationForm').reset();
-            isEmailVerified = false;
-            document.getElementById('otpSection').style.display = 'none';
-            document.getElementById('otpStatus').innerText = '';
-            document.getElementById('otpVerifyStatus').innerText = '';
+            statusEl.style.color = '#3b82f6';
+            statusEl.innerText = 'Submitting your application...';
+
+            const formData = {
+                fullName: document.getElementById('applicantFullName').value.trim(),
+                dob: document.getElementById('applicantDOB').value,
+                nationality: document.getElementById('applicantNationality').value.trim(),
+                phone: document.getElementById('applicantPhone').value.trim(),
+                email: document.getElementById('applicantEmail').value.trim(),
+                ageConfirmed: document.getElementById('applicantAge').value,
+                passportStatus: document.getElementById('applicantPassportStatus').value,
+                passportNo: document.getElementById('applicantPassportNo').value.trim(),
+                jobCategory: document.getElementById('jobCategory').value,
+                experience: document.getElementById('applicantExperience').value,
+                education: document.getElementById('applicantEducation').value,
+                languages: document.getElementById('applicantLanguages').value.trim(),
+                contract: document.getElementById('applicantContract').value,
+                timeline: document.getElementById('applicantTimeline').value,
+                about: document.getElementById('applicantAbout').value.trim(),
+                referral: document.getElementById('applicantReferral').value,
+                notes: document.getElementById('applicantNotes').value.trim()
+            };
+
+            try {
+                const res = await fetch(`${API_URL}/api/submit-application`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    statusEl.style.color = '#10b981';
+                    statusEl.innerText = 'Application submitted successfully! We will contact you within 72 hours.';
+                    document.getElementById('jobApplicationForm').reset();
+                    isEmailVerified = false;
+                    document.getElementById('otpSection').style.display = 'none';
+                    document.getElementById('otpStatus').innerText = '';
+                    document.getElementById('otpVerifyStatus').innerText = '';
+                } else {
+                    statusEl.style.color = '#ef4444';
+                    statusEl.innerText = data.error || 'Submission failed. Please try again.';
+                }
+            } catch (err) {
+                statusEl.style.color = '#ef4444';
+                statusEl.innerText = 'Network error connecting to backend.';
+                console.error('Submission Error:', err);
+            }
         }
     </script>
 </body>
