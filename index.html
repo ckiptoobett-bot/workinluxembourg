@@ -388,8 +388,8 @@
                     <div class="form-group">
                         <label>Passport Number (if available)</label>
                         <input type="text" id="applicantPassportNo" placeholder="Optional">
-                    </div>
-                                        <!-- Section 3 -->
+    </div>
+                        <!-- Section 3 -->
                     <h3 class="section-title">3. JOB POSITION SELECTION</h3>
                     <div class="form-group">
                         <label>Select Preferred Position *</label>
@@ -627,13 +627,12 @@
                 const data = await res.json();
 
                 if (res.ok) {
-                    succEl.innerText = 'Registration successful! Redirecting to sign in...';
-                    setTimeout(() => {
-                        toggleAuthMode('signin');
-                        document.getElementById('signinEmail').value = email;
-                    }, 1200);
+                    succEl.innerText = 'Registration successful! Redirecting...';
+                    alert('Registration successful! Please sign in.');
+                    toggleAuthMode('signin');
+                    document.getElementById('signinEmail').value = email;
                 } else {
-                    errEl.innerText = data.error || data.message || JSON.stringify(data);
+                    errEl.innerText = data.error || data.message || 'Registration failed.';
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
@@ -735,8 +734,8 @@
             }
 
             statusEl.style.color = '#10b981';
-            statusEl.innerText = 'Application submitted successfull!`;
-            document.getElementById('jobApplicationForm').reset();
+            statusEl.innerText = 'Application submitted successfully!';
+                     document.getElementById('jobApplicationForm').reset();
             isEmailVerified = false;
             document.getElementById('otpSection').style.display = 'none';
             document.getElementById('otpStatus').innerText = '';
