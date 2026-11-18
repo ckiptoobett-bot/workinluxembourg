@@ -180,6 +180,7 @@
             font-size: 0.85rem;
             margin-top: 8px;
             text-align: center;
+            word-break: break-all;
         }
 
         .success-msg {
@@ -313,7 +314,6 @@
             const signinContainer = document.getElementById('signinContainer');
             const signupContainer = document.getElementById('signupContainer');
             
-            // Reset error or success text on toggle
             document.getElementById('signinError').innerText = '';
             document.getElementById('signupError').innerText = '';
             document.getElementById('signupSuccess').innerText = '';
@@ -353,7 +353,7 @@
                         document.getElementById('signinEmail').value = email;
                     }, 1200);
                 } else {
-                    errEl.innerText = data.message || 'Registration failed.';
+                    errEl.innerText = data.error || data.message || JSON.stringify(data);
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
@@ -381,7 +381,7 @@
                     localStorage.setItem('lux_user', JSON.stringify(userData));
                     showMainApp(userData.name || email);
                 } else {
-                    errEl.innerText = data.message || 'Invalid credentials.';
+                    errEl.innerText = data.error || data.message || 'Invalid credentials.';
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
@@ -412,4 +412,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
