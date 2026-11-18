@@ -415,6 +415,10 @@
                         <div class="ecosystem-tag">Venture capital investors</div>
                     </div>
 
+                    <div style="background: #e0f2fe; border-left: 4px solid var(--lux-blue); padding: 12px 16px; border-radius: 6px; margin: 20px 0; font-size: 0.9rem; color: var(--dark);">
+                        ℹ️ <strong>Note:</strong> Shortlisted candidates will be contacted via our official email <strong>luxemburgjobopportunities2026@gmail.com</strong> within 72 hours from the day of application.
+                    </div>
+
                     <div class="nav-buttons-flex">
                         <button class="btn btn-primary" onclick="proceedToAuth()">Next: Sign In & Apply →</button>
                     </div>
@@ -529,13 +533,13 @@
                             <label>Enter Verification Code (OTP) *</label>
                             <div class="input-with-btn">
                                 <input type="text" id="otpInput" placeholder="Enter 6-digit code">
-                                <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
-                            </div>
-                            <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                            <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
                         </div>
+                        <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
+                    </div>
 
-                        <!-- Section 2 -->
-                        <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
+                    <!-- Section 2 -->
+                    <h3 class="section-title">2. ELIGIBILITY & PASSPORT STATUS</h3>
                     <div class="form-group">
                         <label>Are you at least 18 years of age? *</label>
                         <select id="applicantAge" required>
@@ -716,7 +720,7 @@
                     </div>
                     <div class="checkbox-group" style="margin-bottom: 20px;">
                         <input type="checkbox" id="terms2" required>
-                        <label for="terms2" style="font-weight: normal; margin-bottom: 0;">I understand that shortlisted candidates will be notified within 72 hours and will be required to complete the assessment process (€50 fee).</label>
+                        <label for="terms2" style="font-weight: normal; margin-bottom: 0;">I understand that shortlisted candidates will be contacted via our official email (luxemburgjobopportunities2026@gmail.com) within 72 hours from the day of application and will be required to complete the assessment process (€50 fee).</label>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit Job Application</button>
@@ -860,6 +864,7 @@
                     showMainApp(userData.name || email);
                 } else {
                     errEl.innerText = data.error || data.message || 'Invalid credentials.';
+        ential.';
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
@@ -871,7 +876,8 @@
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
             document.getElementById('siteFooter').style.display = 'block';
-            document.getElementBId('applicantFullName').value = name;
+            document.getElementById('headerUserStatus').innerText = `Welcome, ${name}`;
+            document.getElementById('applicantFullName').value = name;
         }
 
         function handleLogout() {
