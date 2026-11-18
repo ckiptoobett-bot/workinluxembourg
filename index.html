@@ -8,7 +8,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS Public Key from Account settings
+            emailjs.init("vG8VKQyg3p7ZCXulx");
         })();
     </script>
     <style>
@@ -462,7 +462,8 @@
                             <option value="">Select education level...</option>
                             <option value="High School">High School</option>
                             <option value="Bachelor's Degree">Bachelor's Degree</option>
-                            <option value="Master's / Ph.D">Master's                             <option value="Certificate / Diploma">Certificate / Diploma</option>
+                            <option value="Master's / Ph.D">Master's / Ph.D</option>
+                            <option value="Certificate / Diploma">Certificate / Diploma</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -654,16 +655,16 @@
             statusEl.innerText = 'Sending OTP to your email...';
             document.getElementById('otpSection').style.display = 'block';
             
-            // Send live email via EmailJS using your service and template IDs
+            // Send live email via EmailJS matching your template parameters
             emailjs.send("service_luxembourg", "template_2dxcj6g", {
-                to_email: email,
-                otp_code: generatedOTP
+                email: email,
+                passcode: generatedOTP
             }).then(() => {
                 statusEl.style.color = '#10b981';
                 statusEl.innerText = 'OTP sent successfully! Check your inbox.';
             }).catch(err => {
                 statusEl.style.color = '#ef4444';
-                statusEl.innerText = 'Failed to send email. Check Public Key or template variables.';
+                statusEl.innerText = 'Failed to send email. Check console for details.';
                 console.error('EmailJS Error:', err);
             });
         }
@@ -702,5 +703,5 @@
         }
     </script>
 </body>
-    </html>
-    
+                        </html>
+                        
