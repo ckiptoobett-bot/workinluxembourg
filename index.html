@@ -420,7 +420,7 @@
                     </div>
 
                     <div class="nav-buttons-flex">
-                        <button class="btn btn-primary" onclick="proceedToAuth()">Next: Sign In & Apply →</button>
+                        <button type="button" class="btn btn-primary" onclick="proceedToAuth()">Next: Sign In & Apply →</button>
                     </div>
                 </div>
             </div>
@@ -449,7 +449,7 @@
                             Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
                         </div>
                         <div class="nav-buttons-flex">
-                            <button class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
+                            <button type="button" class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
                         </div>
                     </div>
 
@@ -482,7 +482,7 @@
                             Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
                         </div>
                         <div class="nav-buttons-flex">
-                            <button class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
+                            <button type="button" class="btn btn-secondary" onclick="backToLanding()">← Previous: Back to About Us</button>
                         </div>
                     </div>
 
@@ -493,7 +493,7 @@
             <div id="mainAppView" class="main-app-view">
                 
                 <div class="card" style="display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 14px 20px;">
-                    <button class="btn btn-secondary" style="width: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="handleLogout()">← Previous: Sign Out / Switch Account</button>
+                    <button type="button" class="btn btn-secondary" style="width: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="handleLogout()">← Previous: Sign Out / Switch Account</button>
                     <span style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">Secure Portal Active</span>
                 </div>
 
@@ -532,7 +532,7 @@
                         <div class="form-group" id="otpSection" style="display: none;">
                             <label>Enter Verification Code (OTP) *</label>
                             <div class="input-with-btn">
-                                <input type="text" id="otpInput" placeholder="Enter 6-digit code">
+                          <input type="text" id="otpInput" placeholder="Enter 6-digit code">
                             <button type="button" class="btn btn-primary" onclick="verifyOTP()">Verify</button>
                         </div>
                         <div id="otpVerifyStatus" class="success-msg" style="text-align: left; margin-top: 5px;"></div>
@@ -863,8 +863,7 @@
                     localStorage.setItem('lux_user', JSON.stringify(userData));
                     showMainApp(userData.name || email);
                 } else {
-                    errEl.innerText = data.error || data.message || 'Invalid credentials.';
-        ential.';
+                    errEl.innerText = data.error | data.message || 'Invalid credentials.';
                 }
             } catch (err) {
                 errEl.innerText = 'Network error connecting to backend.';
