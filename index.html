@@ -45,7 +45,7 @@
 
         .container {
             width: 100%;
-            max-width: 640px;
+            max-width: 680px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -79,14 +79,21 @@
             color: var(--lux-blue);
         }
 
-        /* View Controller */
-        .auth-view {
+        /* View Controllers */
+        .landing-view {
             display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .auth-view {
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             flex: 1;
             text-align: center;
+            width: 100%;
         }
 
         .main-app-view {
@@ -94,7 +101,7 @@
             width: 100%;
         }
 
-        /* Cards & Forms */
+        /* Cards & Content Layout */
         .card {
             background: var(--card);
             border: 1px solid var(--border);
@@ -112,6 +119,16 @@
             margin-bottom: 8px;
         }
 
+        h2.about-heading {
+            color: var(--dark);
+            font-size: 1.25rem;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         h3.section-title {
             color: var(--lux-blue);
             font-size: 1.05rem;
@@ -124,6 +141,30 @@
             color: var(--muted);
             font-size: 0.95rem;
             margin-bottom: 20px;
+        }
+
+        .about-text {
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .ecosystem-tag {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--dark);
+            border-left: 3px solid var(--lux-blue);
         }
 
         .form-group {
@@ -253,7 +294,7 @@
             text-align: center;
         }
 
-        /* Professional Footer Style matching reference */
+        /* Professional Footer Style */
         .site-footer {
             background: var(--footer-bg);
             color: var(--footer-text);
@@ -318,7 +359,54 @@
                 <div id="headerUserStatus" style="font-size: 0.85rem; font-weight: 600; color: var(--muted);">Official Portal</div>
             </header>
 
-            <!-- AUTHENTICATION VIEW -->
+            <!-- LANDING / ABOUT US VIEW (FIRST PAGE) -->
+            <div id="landingView" class="landing-view">
+                <div class="card">
+                    <h1>About Work in Luxembourg</h1>
+                    <p class="subtitle">Empowering international professionals with a data-driven path to the Grand Duchy.</p>
+                    
+                    <p class="about-text">
+                        The <strong>Talent to Luxembourg</strong> initiative was born in 2024 from a simple observation by its Founder, <strong>Ruggero Monelli</strong>: many talented candidates approach the Luxembourg job market without truly understanding what makes a professional relationship with an employer succeed.
+                    </p>
+                    <p class="about-text">
+                        Drawing on years of firsthand experience in the Grand Duchy, Ruggero decided to turn that insight into action — extending an open invitation to professionals from abroad to explore career opportunities and relocate to Luxembourg.
+                    </p>
+                    <p class="about-text">
+                        The approach is deliberately <strong>data-driven</strong>, built on an extensive mapping of the Luxembourg ecosystem.
+                    </p>
+
+                    <h2 class="about-heading">🎯 Talent & Recruitment</h2>
+                    <p class="about-text">
+                        • A curated list of around <strong>100 recruiters</strong> based in Luxembourg, complemented by 100 international recruiters based in the UK and beyond.<br>
+                        • A directory of around <strong>1,300 companies</strong> offering jobs in Luxembourg, with ready-to-use links to live job offers, organized across approximately 150 industry sectors.<br>
+                        • The complete annual calendar of job fairs in Luxembourg, including detailed profiles of hundreds of employers from past editions.
+                    </p>
+
+                    <h2 class="about-heading">🌍 Practical Support & Relocation</h2>
+                    <p class="about-text">
+                        • Online tools for CV restructuring, job portals, and a full overview of professional certifications relevant to the local market.<br>
+                        • A directory of training providers offering tailored programmes.<br>
+                        • Relocation guides produced by specialized expat organizations, including real estate companies offering rental services.
+                    </p>
+
+                    <h2 class="about-heading">📈 Industry Ecosystem Mapping</h2>
+                    <div class="ecosystem-grid">
+                        <div class="ecosystem-tag">Financial institutions & Asset management</div>
+                        <div class="ecosystem-tag">Education (including cross-border institutions)</div>
+                        <div class="ecosystem-tag">AI, Blockchain & Cybersecurity</div>
+                        <div class="ecosystem-tag">Health, Research & Real estate</div>
+                        <div class="ecosystem-tag">Legal & European Institutions</div>
+                        <div class="ecosystem-tag">Professional associations & Startup support</div>
+                        <div class="ecosystem-tag">Venture capital investors</div>
+                    </div>
+
+                    <div style="margin-top: 24px;">
+                        <button class="btn btn-primary" onclick="proceedToAuth()">Proceed to Sign In & Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTHENTICATION VIEW (SECOND STEP) -->
             <div id="authView" class="auth-view">
                 <div class="card" style="max-width: 420px; margin: 0 auto;">
                     
@@ -340,6 +428,9 @@
                         </form>
                         <div class="switch-text">
                             Don't have an account? <a onclick="toggleAuthMode('signup')">Sign Up</a>
+                        </div>
+                        <div class="switch-text" style="margin-top: 8px;">
+                            <a onclick="backToLanding()">← Back to About Us</a>
                         </div>
                     </div>
 
@@ -370,6 +461,9 @@
                         </form>
                         <div class="switch-text">
                             Already have an account? <a onclick="toggleAuthMode('signin')">Sign In</a>
+                        </div>
+                        <div class="switch-text" style="margin-top: 8px;">
+                            <a onclick="backToLanding()">← Back to About Us</a>
                         </div>
                     </div>
 
@@ -434,65 +528,65 @@
                             <label>Valid International Passport Status *</label>
                             <select id="applicantPassportStatus" required>
                                 <option value="">Select passport status...</option>
-                                <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
-                                <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
-                                <option value="Expired / Needs renewal">Expired / Needs renewal</option>
-                                <option value="Do not have a passport yet">Do not have a passport yet</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Passport Number (if available)</label>
-                            <input type="text" id="applicantPassportNo" placeholder="Optional">
-                        </div>
+                           <option value="Yes - Valid International Passport">Yes - Valid International Passport</option>
+                            <option value="Applied / Waiting for collection">Applied / Waiting for collection</option>
+                            <option value="Expired / Needs renewal">Expired / Needs renewal</option>
+                            <option value="Do not have a passport yet">Do not have a passport yet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Passport Number (if available)</label>
+                        <input type="text" id="applicantPassportNo" placeholder="Optional">
+                    </div>
 
-                        <!-- Section 3 -->
-                        <h3 class="section-title">3. JOB POSITION SELECTION</h3>
-                        <div class="form-group">
-                            <label>Select Preferred Position *</label>
-                            <select id="jobCategory" required>
-                                <option value="">Choose from available positions...</option>
-                                <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
-                                <option value="Administrative Assistant">Administrative Assistant</option>
-                                <option value="Bartender">Bartender</option>
-                                <option value="Butcher">Butcher</option>
-                                <option value="Caregiver">Caregiver</option>
-                                <option value="Carpenter">Carpenter</option>
-                                <option value="Cashier">Cashier</option>
-                                <option value="Chef and Cook">Chef and Cook</option>
-                                <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
-                                <option value="Construction Worker">Construction Worker</option>
-                                <option value="Customer Service Representative">Customer Service Representative</option>
-                                <option value="Data Entry Clerk">Data Entry Clerk</option>
-                                <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
-                                <option value="Electrician">Electrician</option>
-                                <option value="Fabricator">Fabricator</option>
-                                <option value="Factory / Production Worker">Factory / Production Worker</option>
-                                <option value="Financial Analyst">Financial Analyst</option>
-                                <option value="Forklift Operator">Forklift Operator</option>
-                                <option value="Gardener">Gardener</option>
-                                <option value="Graphic Designer">Graphic Designer</option>
-                                <option value="Healthcare Assistant">Healthcare Assistant</option>
-                                <option value="Helper">Helper</option>
-                                <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
-                                <option value="Human Resource Assistant">Human Resource Assistant</option>
-                                <option value="IT Support Technician">IT Support Technician</option>
-                                <option value="Kitchen Assistant">Kitchen Assistant</option>
-                                <option value="Logistics Assistant">Logistics Assistant</option>
-                                <option value="Maintenance Worker">Maintenance Worker</option>
-                                <option value="Marketing Specialist">Marketing Specialist</option>
-                                <option value="Mechanical Technician">Mechanical Technician</option>
-                                <option value="Nanny">Nanny</option>
-                                <option value="Office Clerk">Office Clerk</option>
-                                <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
-                                <option value="Painter">Painter</option>
-                                <option value="Plumber">Plumber</option>
-                                <option value="Project Coordinator">Project Coordinator</option>
-                                <option value="Receptionist">Receptionist</option>
-                                <option value="Registered Nurse">Registered Nurse</option>
-                                <option value="Restaurant Supervisor">Restaurant Supervisor</option>
-                                <option value="Retail Assistant">Retail Assistant</option>
-                                <option value="Sales Representative">Sales Representative</option>
-  <option value="Security Personnel">Security Personnel</option>
+                    <!-- Section 3 -->
+                    <h3 class="section-title">3. JOB POSITION SELECTION</h3>
+                    <div class="form-group">
+                        <label>Select Preferred Position *</label>
+                        <select id="jobCategory" required>
+                            <option value="">Choose from available positions...</option>
+                            <option value="Accountant and Bookkeeper">Accountant and Bookkeeper</option>
+                            <option value="Administrative Assistant">Administrative Assistant</option>
+                            <option value="Bartender">Bartender</option>
+                            <option value="Butcher">Butcher</option>
+                            <option value="Caregiver">Caregiver</option>
+                            <option value="Carpenter">Carpenter</option>
+                            <option value="Cashier">Cashier</option>
+                            <option value="Chef and Cook">Chef and Cook</option>
+                            <option value="Cleaning Staff / Cleaner">Cleaning Staff / Cleaner</option>
+                            <option value="Construction Worker">Construction Worker</option>
+                            <option value="Customer Service Representative">Customer Service Representative</option>
+                            <option value="Data Entry Clerk">Data Entry Clerk</option>
+                            <option value="Truck and Delivery Driver">Truck and Delivery Driver</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Fabricator">Fabricator</option>
+                            <option value="Factory / Production Worker">Factory / Production Worker</option>
+                            <option value="Financial Analyst">Financial Analyst</option>
+                            <option value="Forklift Operator">Forklift Operator</option>
+                            <option value="Gardener">Gardener</option>
+                            <option value="Graphic Designer">Graphic Designer</option>
+                            <option value="Healthcare Assistant">Healthcare Assistant</option>
+                            <option value="Helper">Helper</option>
+                            <option value="Hotel Receptionist and Manager">Hotel Receptionist and Manager</option>
+                            <option value="Human Resource Assistant">Human Resource Assistant</option>
+                            <option value="IT Support Technician">IT Support Technician</option>
+                            <option value="Kitchen Assistant">Kitchen Assistant</option>
+                            <option value="Logistics Assistant">Logistics Assistant</option>
+                            <option value="Maintenance Worker">Maintenance Worker</option>
+                            <option value="Marketing Specialist">Marketing Specialist</option>
+                            <option value="Mechanical Technician">Mechanical Technician</option>
+                            <option value="Nanny">Nanny</option>
+                            <option value="Office Clerk">Office Clerk</option>
+                            <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
+                            <option value="Painter">Painter</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Project Coordinator">Project Coordinator</option>
+                            <option value="Receptionist">Receptionist</option>
+                            <option value="Registered Nurse">Registered Nurse</option>
+                            <option value="Restaurant Supervisor">Restaurant Supervisor</option>
+                            <option value="Retail Assistant">Retail Assistant</option>
+                            <option value="Sales Representative">Sales Representative</option>
+                            <option value="Security Personnel">Security Personnel</option>
                             <option value="Software Developer">Software Developer</option>
                             <option value="Stocker">Stocker</option>
                             <option value="Store Clerk">Store Clerk</option>
@@ -616,7 +710,7 @@
 
         </div>
 
-        <!-- Professional Footer matching reference style -->
+        <!-- Professional Footer -->
         <footer class="site-footer">
             <div class="footer-grid">
                 <div class="footer-section">
@@ -659,6 +753,16 @@
                 }
             }
         });
+
+        function proceedToAuth() {
+            document.getElementById('landingView').style.display = 'none';
+            document.getElementById('authView').style.display = 'flex';
+        }
+
+        function backToLanding() {
+            document.getElementById('authView').style.display = 'none';
+            document.getElementById('landingView').style.display = 'flex';
+        }
 
         function toggleAuthMode(mode) {
             const signinContainer = document.getElementById('signinContainer');
@@ -746,6 +850,7 @@
         }
 
         function showMainApp(name) {
+            document.getElementById('landingView').style.display = 'none';
             document.getElementById('authView').style.display = 'none';
             document.getElementById('mainAppView').style.display = 'block';
             document.getElementById('headerUserStatus').innerText = `Welcome, ${name}`;
@@ -755,7 +860,7 @@
         function handleLogout() {
             localStorage.removeItem('lux_user');
             document.getElementById('mainAppView').style.display = 'none';
-            document.getElementById('authView').style.display = 'flex';
+            document.getElementById('landingView').style.display = 'flex';
             document.getElementById('headerUserStatus').innerText = 'Official Portal';
             document.getElementById('signinForm').reset();
             document.getElementById('signupForm').reset();
