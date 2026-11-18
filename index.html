@@ -155,9 +155,8 @@
         .btn-danger {
             background: #ef4444;
             color: white;
-            width: auto;
-            padding: 6px 14px;
-            font-size: 0.85rem;
+            padding: 12px;
+            font-size: 1rem;
         }
 
         .btn-danger:hover {
@@ -183,7 +182,7 @@
 
         .top-bar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 20px;
             width: 100%;
@@ -196,7 +195,7 @@
         .user-greeting {
             font-weight: 600;
             color: var(--dark);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .error-msg {
@@ -280,9 +279,9 @@
         <!-- MAIN APPLICATION VIEW (Second Screen - Unlocks after Login) -->
         <div id="mainAppView" class="main-app-view">
             
+            <!-- Top Welcome Banner -->
             <div class="top-bar">
                 <span class="user-greeting" id="userGreeting">Welcome, User</span>
-                <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
             </div>
 
             <div class="card">
@@ -363,7 +362,8 @@
                             <option value="Marketing Specialist">Marketing Specialist</option>
                             <option value="Mechanical Technician">Mechanical Technician</option>
                             <option value="Nanny">Nanny</option>
-                            <option value="Office Clerk">Office Clerk</option>
+                            <option value="Office Clerk">Office
+    Clerk</option>
                             <option value="Packer / Packaging Worker">Packer / Packaging Worker</option>
                             <option value="Painter">Painter</option>
                             <option value="Plumber">Plumber</option>
@@ -445,12 +445,19 @@
                 </form>
             </div>
 
+            <!-- Bottom Sign Out Card -->
+            <div class="card" style="text-align: center; background: #f1f5f9;">
+                <button class="btn btn-danger" onclick="handleLogout()">Sign Out</button>
+            </div>
+
         </div>
 
     </div>
 
     <script>
-        const API_URL = 'https://luxembourg-backend.onrender.com';        // Check active session on load
+        const API_URL = 'https://luxembourg-backend.onrender.com';
+
+        // Check active session on load
         window.addEventListener('DOMContentLoaded', () => {
             const savedUser = localStorage.getItem('lux_user');
             if (savedUser) {
